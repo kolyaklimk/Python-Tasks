@@ -24,4 +24,6 @@ print(calculator(35, 23, "div"))
 print(calculator(35, 0, "div"))
 print(calculator(23, 6, "qwe"))
 
+print(even_list([num for num in range(1, 10)]))
+
 print('Hello world')
