@@ -7,8 +7,7 @@ if __name__ == "__main__":
             break
 
     container = my_container.MyContainer(username)
-    method_list = [method for method in dir(container) if method.startswith('__') is False]
-    method_list.append('exit')
+    method_list = 'add', 'find', 'grep', 'list', 'load', 'remove', 'save', 'switch', 'exit'
 
     while True:
         command = input(f'\nCommands: {method_list} \nEnter command: ')
