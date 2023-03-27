@@ -51,3 +51,11 @@ class MyContainer:
                 self.container.update(set(json.load(file)))
         else:
             print('No save with', self.username)
+
+    def switch(self, username):
+        if input(('Save', self.container, 'container?(y/n)')) == 'y':
+            self.save()
+        self.username = username
+        self.container.clear()
+        if input(('Load', self.container, 'container?(y/n)')) == 'y':
+            self.load()
