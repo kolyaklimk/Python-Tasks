@@ -43,7 +43,7 @@ class MyContainer:
     def save(self):
         os.makedirs(os.path.dirname(f'./users/{self.username}.json'), exist_ok=True)
         with open(os.path.dirname(f'./users/{self.username}.json'), 'r') as file:
-            self.container = set(json.load(file))
+            json.dump(list(self.username), file)
 
     def load(self):
         if os.path.exists(f'./users/{self.username}.json'):
@@ -51,4 +51,3 @@ class MyContainer:
                 self.container = set(json.load(file))
         else:
             print('No save with', self.username)
-            
