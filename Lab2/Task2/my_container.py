@@ -10,19 +10,19 @@ class MyContainer:
 
     def add(self, *keys):
         for key in keys:
-            if str(key) not in self.container:
-                self.container.add(str(key))
+            if key not in self.container:
+                self.container.add(key)
 
-    def remove(self, key: str):
+    def remove(self, key):
         if key in self.container:
             self.container.remove(key)
 
     def find(self, *keys):
         found = False
         for key in keys:
-            if str(key) in self.container:
+            if key in self.container:
                 found = True
-                print('Found', str(key), 'in container.')
+                print('Found', key, 'in container.')
         if not found:
             print('No such elements in container!')
 
@@ -30,7 +30,7 @@ class MyContainer:
         for key in self.container:
             print(key)
 
-    def grep(self, regex: str):
+    def grep(self, regex):
         found = False
         re_pattern = re.compile(regex)
         for key in self.container:
@@ -52,10 +52,10 @@ class MyContainer:
         else:
             print('No save with', self.username)
 
-    def switch(self, username: str):
-        if input(f'Save {self.container} container?(y/n)') == 'y':
+    def switch(self, username):
+        if input(f'Save {self.username} container?(y/n)') == 'y':
             self.save()
         self.username = username
         self.container.clear()
-        if input(f'Save {self.container} container?(y/n)') == 'y':
+        if input(f'Load {self.username} container?(y/n)') == 'y':
             self.load()
