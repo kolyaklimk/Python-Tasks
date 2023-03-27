@@ -19,7 +19,7 @@ if __name__ == "__main__":
                 if len(tokens) == 1:
                     print('Error! Write <command> <value...>')
                     continue
-                container.add(tokens[1:])
+                container.add(*tokens[1:])
             case "remove":
                 if len(tokens) == 1:
                     print('Error! Write <command> <value...>')
@@ -29,7 +29,7 @@ if __name__ == "__main__":
                 if len(tokens) == 1:
                     print('Error! Write <command> <value...>')
                     continue
-                container.remove(tokens[1])
+                container.remove(*tokens[1:])
             case "list":
                 container.list()
             case "grep":
