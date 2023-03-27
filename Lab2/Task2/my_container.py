@@ -43,7 +43,7 @@ class MyContainer:
     def save(self):
         os.makedirs(os.path.dirname(f'./users/{self.username}.json'), exist_ok=True)
         with open(f'./users/{self.username}.json', 'w') as file:
-            json.dump(list(self.username), file)
+            json.dump(list(self.container), file)
 
     def load(self):
         if os.path.exists(f'./users/{self.username}.json'):
