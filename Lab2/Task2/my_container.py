@@ -47,7 +47,7 @@ class MyContainer:
 
     def load(self):
         if os.path.exists(f'./users/{self.username}.json'):
-            with open(os.path.dirname(f'./users/{self.username}.json'), 'r') as file:
+            with open(f'./users/{self.username}.json', 'r') as file:
                 self.container.update(set(json.load(file)))
         else:
             print('No save with', self.username)
