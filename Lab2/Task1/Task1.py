@@ -54,11 +54,11 @@ def top_K_repeated_N_grams(text: str, K=10, N=4):
 input_text = 'This is a text 123 a32 with some separators, and ' \
              'multiple sentences. Foo bar baz... ' \
              'Abbreviations can also appear a1b2c3 1234. ' \
-             'Foo bar baz hello world hello world. Hi there. Hi... there. ' \
+             'Foo bar baz hello world hello world. Foo bar baz hello. Hi there. Hi... there. ' \
              'How are you? I am fine! Foo bar baz hello.'
 
-print(amount_of_sentences(' ' + input_text + ' '))
-print(amount_of_non_declarative_sentences(' ' + input_text + ' '))
-print(average_lenght_of_the_sentence(' ' + input_text + ' '))
-print(average_lenght_of_the_word(' ' + input_text + ' '))
-print(top_K_repeated_N_grams(' ' + input_text + ' '))
+print('Amount_of_sentences: ', amount_of_sentences(' ' + input_text + ' '))
+print('Amount_of_non_declarative_sentences: ', amount_of_non_declarative_sentences(' ' + input_text + ' '))
+print('Average_lenght_of_the_sentence: ', average_lenght_of_the_sentence(' ' + input_text + ' '))
+print('Average_lenght_of_the_word: ', average_lenght_of_the_word(' ' + input_text + ' '))
+print('Top_K_repeated_N_grams: ', top_K_repeated_N_grams(' ' + input_text + ' '))
