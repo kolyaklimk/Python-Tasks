@@ -42,7 +42,7 @@ class MyContainer:
 
     def save(self):
         os.makedirs(os.path.dirname(f'./users/{self.username}.json'), exist_ok=True)
-        with open(os.path.dirname(f'./users/{self.username}.json'), 'w') as file:
+        with open(f'./users/{self.username}.json', 'w') as file:
             json.dump(list(self.username), file)
 
     def load(self):
@@ -53,9 +53,9 @@ class MyContainer:
             print('No save with', self.username)
 
     def switch(self, username: str):
-        if input(('Save', self.container, 'container?(y/n)')) == 'y':
+        if input(f'Save {self.container} container?(y/n)') == 'y':
             self.save()
         self.username = username
         self.container.clear()
-        if input(('Load', self.container, 'container?(y/n)')) == 'y':
+        if input(f'Save {self.container} container?(y/n)') == 'y':
             self.load()
