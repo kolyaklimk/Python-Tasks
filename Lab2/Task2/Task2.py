@@ -19,4 +19,7 @@ class MyContainer:
                 print('Found', key, 'in container.')
         if not found:
             print('No such elements in container!')
-    
+
+    def list(self):
+        for key in self.container:
+            print(key)
