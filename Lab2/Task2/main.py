@@ -47,7 +47,7 @@ if __name__ == "__main__":
                     continue
                 container.switch(tokens[1])
             case "exit":
-                if input(('Save', container.username, 'container?(y/n)')) == 'y':
+                if input(f'Save {container.username} container?(y/n)') == 'y':
                     container.save()
                 exit()
             case _:
