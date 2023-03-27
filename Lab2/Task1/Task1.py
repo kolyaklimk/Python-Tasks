@@ -2,15 +2,15 @@ import re
 
 
 def amount_of_sentences(text):
-    return len(re.findall(r'[^.]{2}[.]\s', text)) + len(re.findall(r'[.]{3}\s', text))
+    return len(re.findall(r'[^.]{2}[.]\s', ' ' + text + ' ')) + len(re.findall(r'[.]{3}\s', ' ' + text + ' '))
 
 
 def amount_of_non_declarative_sentences(text):
-    return len(re.findall(r'[?!]\s', text))
+    return len(re.findall(r'[?!]\s', ' ' + text + ' '))
 
 
 def average_lenght_of_the_sentence(text):
-    sentences = re.findall(r'(?=\s[A-Z0-9]).*?(?=[.?!]\s)', text)
+    sentences = re.findall(r'(?=\s[A-Z0-9]).*?(?=[.?!]\s)', ' ' + text + ' ')
     count_sentences = len(sentences)
     count_char = 0
 
@@ -25,7 +25,7 @@ def average_lenght_of_the_sentence(text):
 
 
 def average_lenght_of_the_word(text):
-    words = re.findall(r'(?=\w).*?(?=\W)', text)
+    words = re.findall(r'(?=\w).*?(?=\W)', ' ' + text + ' ')
     count_words = len(words)
     count_char = 0
 
@@ -39,7 +39,7 @@ def average_lenght_of_the_word(text):
 
 def top_K_repeated_N_grams(text: str, K=10, N=4):
     n_grams: dict[str, int] = {}
-    words = re.findall(r'(?=\w).*?(?=\W)', text.lower())
+    words = re.findall(r'(?=\w).*?(?=\W)', (' ' + text + ' ').lower())
 
     for i in range(len(words) - N + 1):
         n_gram = ' '.join(x for x in words[i:i + N])
