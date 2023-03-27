@@ -1,3 +1,6 @@
+import re
+
+
 class MyContainer:
     def __init__(self):
         self.container = set()
@@ -23,3 +26,14 @@ class MyContainer:
     def list(self):
         for key in self.container:
             print(key)
+
+    def grep(self, regex):
+        found = False
+        re_pattern = re.compile(regex)
+        for key in self.container:
+            if re_pattern.search(key):
+                print(key)
+                found = True
+        if not found:
+            print('No such elements in container!')
+    
