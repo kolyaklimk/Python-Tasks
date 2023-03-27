@@ -1,9 +1,12 @@
+import json
+import os
 import re
 
 
 class MyContainer:
-    def __init__(self):
+    def __init__(self, username):
         self.container = set()
+        self.username = username
 
     def add(self, *keys):
         for key in keys:
@@ -36,4 +39,9 @@ class MyContainer:
                 found = True
         if not found:
             print('No such elements in container!')
+
+    def save(self):
+        os.makedirs(os.path.dirname(f'./users/{self.username}.json'), exist_ok=True)
+        with open(os.path.dirname(f'./users/{self.username}.json'), 'r') as file:
+            self.container = set(json.load(file))
     
