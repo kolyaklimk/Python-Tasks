@@ -40,22 +40,22 @@ class MyContainer:
         if not found:
             print('No such elements in container!')
 
-    def save(self):
-        os.makedirs(os.path.dirname(f'./users/{self.username}.json'), exist_ok=True)
-        with open(f'./users/{self.username}.json', 'w') as file:
+    def save(self, files):
+        os.makedirs(os.path.dirname(f'./users/{files}.json'), exist_ok=True)
+        with open(f'./users/{files}.json', 'w') as file:
             json.dump(list(self.container), file)
 
-    def load(self):
-        if os.path.exists(f'./users/{self.username}.json'):
-            with open(f'./users/{self.username}.json', 'r') as file:
+    def load(self, files):
+        if os.path.exists(f'./users/{files}.json'):
+            with open(f'./users/{files}.json', 'r') as file:
                 self.container.update(set(json.load(file)))
         else:
-            print('No save with', self.username)
+            print('No save with', files)
 
     def switch(self, username):
         if input(f'Save {self.username} container?(y/n)') == 'y':
-            self.save()
+            self.save(self.username)
         self.username = username
         self.container.clear()
         if input(f'Load {self.username} container?(y/n)') == 'y':
-            self.load()
+            self.load(self.username)
