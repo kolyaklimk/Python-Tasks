@@ -37,9 +37,15 @@ if __name__ == "__main__":
                     continue
                 container.grep(tokens[1])
             case "save":
-                container.save()
+                if len(tokens) == 1:
+                    print('Error! Write <command> <value...>')
+                    continue
+                container.save(tokens[1])
             case "load":
-                container.load()
+                if len(tokens) == 1:
+                    print('Error! Write <command> <value...>')
+                    continue
+                container.load(tokens[1])
             case "switch":
                 if len(tokens) == 1:
                     print('Error! Write <command> <value...>')
@@ -47,7 +53,7 @@ if __name__ == "__main__":
                 container.switch(tokens[1])
             case "exit":
                 if input(f'Save {container.username} container?(y/n)') == 'y':
-                    container.save()
+                    container.save(container.username)
                 exit()
             case _:
                 print('No such command!')
