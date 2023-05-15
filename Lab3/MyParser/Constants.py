@@ -23,10 +23,10 @@ CODE_PROPS = [prop.__name__ for prop in [
     codetype.co_varnames,
     codetype.co_filename,
     codetype.co_name,
-    codetype.co_qualname,
+    #codetype.co_qualname,
     codetype.co_firstlineno,
     codetype.co_lnotab,
-    codetype.co_exceptiontable,
+    #codetype.co_exceptiontable,
     codetype.co_freevars,
     codetype.co_cellvars
 ]]
