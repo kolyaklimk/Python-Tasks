@@ -108,4 +108,8 @@ class Parser:
 
     @classmethod
     def from_dict(cls, obj, is_dict=False):
-        pass
+        if is_dict:
+            return {cls.from_dict(item[0]): cls.from_dict(item[1]) for item in obj}
+
+        if type(obj) not in (dict, list):
+            return obj
