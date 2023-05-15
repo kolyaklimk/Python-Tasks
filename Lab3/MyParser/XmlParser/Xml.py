@@ -64,6 +64,14 @@ class Xml(Serializer):
             if key == nonetype.__name__:
                 return None
 
+            if key == list.__name__:
+                matches = regex.findall(XML_ELEMENT_PATTERN, value)
+                return [loads_to_dict(match[0]) for match in matches]
+
+            if key == dict.__name__:
+                matches = regex.findall(XML_ELEMENT_PATTERN, value)
+                return {loads_to_dict(matches[i][0]): loads_to_dict(matches[i + 1][0]) for i in
+                        range(0, len(matches), 2)}
             else:
                 raise ValueError
 
