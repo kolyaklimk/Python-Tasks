@@ -113,3 +113,6 @@ class Parser:
 
         if type(obj) not in (dict, list):
             return obj
+
+        elif type(obj) is list:
+            return [cls.from_dict(o) for o in obj]
