@@ -36,4 +36,8 @@ class Xml(Serializer):
         return dumps_from_dict(obj, True)
 
     def loads(self, obj: str):
-        pass
+        def loads_to_dict(string: str, is_first=False):
+            pass
+
+        obj = loads_to_dict(obj, True)
+        return Parser.from_dict(obj)
