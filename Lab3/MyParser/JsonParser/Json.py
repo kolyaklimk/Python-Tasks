@@ -60,6 +60,17 @@ class Json(Serializer):
                 ans = ans.replace('\\\\', "\\").replace(r"\"", '"').replace(r"\'", "'")
                 return ans[1:-1]
 
+            if string[0] == '[' and string[-1] == ']':
+                string = string[1:-1]
+                matches = regex.findall(VALUE_PATTERN, string)
+                return [loads_to_dict(match[0]) for match in matches]
+
+            if string[0] == '{' and string[-1] == '}':
+                string = string[1:-1]
+                matches = regex.findall(VALUE_PATTERN, string)
+
+                return {loads_to_dict(matches[i][0]): loads_to_dict(matches[i + 1][0]) for i in
+                        range(0, len(matches), 2)}
             else:
                 raise ValueError
 
