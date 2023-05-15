@@ -14,7 +14,16 @@ class Xml(Serializer):
                 return f"<{name}>{data}</{name}>"
 
         def dumps_from_dict(string, is_first=False) -> str:
-            pass
+            if type(string) in (int, float, bool, nonetype):
+                return create_xml_element(type(string).__name__, str(string), is_first)
+
+            if type(string) is str:
+                data = string.replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;"). \
+                    replace('"', "&quot;").replace("'", "&apos;")
+                return create_xml_element(str.__name__, data, is_first)
+
+            else:
+                raise ValueError
 
         obj = Parser.to_dict(obj)
         return dumps_from_dict(obj, True)
