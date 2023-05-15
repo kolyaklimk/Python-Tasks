@@ -19,7 +19,7 @@ class Parser:
                     else:
                         dct2[cls.to_dict(KEY)] = cls.to_dict(VALUE)
             return dct2
-        
+
         if type(obj) in (int, float, bool, str, nonetype):
             return obj
 
@@ -60,6 +60,51 @@ class Parser:
         if type(obj) in (smethodtype, cmethodtype):
             return {TYPE_KW: type(obj).__name__,
                     SOURCE_KW: cls.to_dict(obj.__func__, is_inner_func)}
+
+        if inspect.isroutine(obj):
+            source = {CODE_KW: cls.to_dict(obj.__code__)}
+
+            name = obj.__name__
+            gvars = {}
+            for gvar_name in obj.__code__.co_names:
+                if gvar_name in obj.__globals__:
+
+                    if type(obj.__globals__[gvar_name]) is moduletype:
+                        gvars[gvar_name] = obj.__globals__[gvar_name]
+
+                    elif inspect.isclass(obj.__globals__[gvar_name]):
+                        c = obj.__globals__[gvar_name]
+                        if is_inner_func and name in c.__dict__ and obj == c.__dict__[name].__func__:
+                            gvars[gvar_name] = c.__name__
+                        else:
+                            gvars[gvar_name] = c
+
+                    elif gvar_name == obj.__code__.co_name:
+                        gvars[gvar_name] = obj.__name__
+
+                    else:
+                        gvars[gvar_name] = obj.__globals__[gvar_name]
+            source[GLOBALS_KW] = cls.to_dict(gvars)
+
+            source[NAME_KW] = cls.to_dict(obj.__name__)
+
+            source[DEFAULTS_KW] = cls.to_dict(obj.__defaults__)
+
+            source[CLOSURE_KW] = cls.to_dict(obj.__closure__)
+
+            return {TYPE_KW: functype.__name__, SOURCE_KW: source}
+
+        elif inspect.isclass(obj):
+            source = {NAME_KW: cls.to_dict(obj.__name__),
+                      BASES_KW: cls.to_dict(tuple(b for b in obj.__bases__ if b != object)),
+                      DICT_KW: get_obj_dict(obj)}
+
+            return {TYPE_KW: type.__name__, SOURCE_KW: source}
+
+        else:
+            source = {CLASS_KW: cls.to_dict(obj.__class__), DICT_KW: get_obj_dict(obj)}
+
+            return {TYPE_KW: OBJECT_KW, SOURCE_KW: source}
 
     @classmethod
     def from_dict(cls, obj, is_dict=False):
