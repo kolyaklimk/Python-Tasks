@@ -8,7 +8,10 @@ from MyParser.XmlParser import KEY_GROUP_NAME, VALUE_GROUP_NAME, XML_SCHEME_SOUR
 class Xml(Serializer):
     def dumps(self, obj) -> str:
         def create_xml_element(name: str, data: str, is_first=False):
-            pass
+            if is_first:
+                return f"<{name} {XML_SCHEME_SOURCE}>{data}</{name}>"
+            else:
+                return f"<{name}>{data}</{name}>"
 
         def dumps_from_dict(string, is_first=False) -> str:
             pass
