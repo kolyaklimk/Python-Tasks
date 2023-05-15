@@ -37,7 +37,35 @@ class Xml(Serializer):
 
     def loads(self, obj: str):
         def loads_to_dict(string: str, is_first=False):
-            pass
+            string = string.strip()
+            xml_element_pattern = FIRST_XML_ELEMENT_PATTERN if is_first else XML_ELEMENT_PATTERN
+
+            match = regex.fullmatch(xml_element_pattern, string)
+
+            if not match:
+                raise ValueError
+
+            key = match.group(KEY_GROUP_NAME)
+            value = match.group(VALUE_GROUP_NAME)
+
+            if key == int.__name__:
+                return int(value)
+
+            if key == float.__name__:
+                return float(value)
+
+            if key == bool.__name__:
+                return value == str(True)
+
+            if key == str.__name__:
+                return value.replace("&amp;", '&').replace("&lt;", '<').replace("&gt;", '>'). \
+                    replace("&quot;", '"').replace("&apos;", "'")
+
+            if key == nonetype.__name__:
+                return None
+
+            else:
+                raise ValueError
 
         obj = loads_to_dict(obj, True)
         return Parser.from_dict(obj)
