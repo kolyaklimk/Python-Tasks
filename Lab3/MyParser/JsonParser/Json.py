@@ -12,7 +12,7 @@ class Json(Serializer):
         def dumps_from_dict(string) -> str:
             if type(string) is nonetype:
                 return NULL_LITERAL
-            
+
             if type(string) is bool:
                 return TRUE_LITERAL if string else FALSE_LITERAL
 
@@ -35,4 +35,33 @@ class Json(Serializer):
         return dumps_from_dict(obj)
 
     def loads(self, obj: str):
-        pass
+        def loads_to_dict(string: str):
+            string = string.strip()
+
+            match = re.fullmatch(NULL_PATTERN, string)
+            if match:
+                return None
+
+            match = re.fullmatch(BOOL_PATTERN, string)
+            if match:
+                return match.group(0) == TRUE_LITERAL
+
+            match = re.fullmatch(INT_PATTERN, string)
+            if match:
+                return int(match.group(0))
+
+            match = re.fullmatch(FLOAT_PATTERN, string)
+            if match:
+                return float(match.group(0))
+
+            match = re.fullmatch(STRING_PATTERN, string)
+            if match:
+                ans = match.group(0)
+                ans = ans.replace('\\\\', "\\").replace(r"\"", '"').replace(r"\'", "'")
+                return ans[1:-1]
+
+            else:
+                raise ValueError
+
+        obj = loads_to_dict(obj)
+        return Parser.from_dict(obj)
