@@ -7,7 +7,14 @@ from MyParser.XmlParser import KEY_GROUP_NAME, VALUE_GROUP_NAME, XML_SCHEME_SOUR
 
 class Xml(Serializer):
     def dumps(self, obj) -> str:
-        pass
+        def create_xml_element(name: str, data: str, is_first=False):
+            pass
+
+        def dumps_from_dict(string, is_first=False) -> str:
+            pass
+
+        obj = Parser.to_dict(obj)
+        return dumps_from_dict(obj, True)
 
     def loads(self, obj: str):
         pass
