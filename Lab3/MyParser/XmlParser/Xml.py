@@ -22,6 +22,13 @@ class Xml(Serializer):
                     replace('"', "&quot;").replace("'", "&apos;")
                 return create_xml_element(str.__name__, data, is_first)
 
+            if type(string) is list:
+                data = ''.join([dumps_from_dict(o) for o in string])
+                return create_xml_element(list.__name__, data, is_first)
+
+            if type(string) is dict:
+                data = ''.join([f"{dumps_from_dict(item[0])}{dumps_from_dict(item[1])}" for item in string.items()])
+                return create_xml_element(dict.__name__, data, is_first)
             else:
                 raise ValueError
 
