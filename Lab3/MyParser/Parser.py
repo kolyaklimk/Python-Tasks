@@ -8,6 +8,18 @@ from MyParser import nonetype, moduletype, codetype, celltype, \
 class Parser:
     @classmethod
     def to_dict(cls, obj, is_inner_func=False):
+        def get_obj_dict(obj_dict):
+            dct = {item[0]: item[1] for item in obj_dict.__dict__.items()}
+            dct2 = {}
+
+            for KEY, VALUE in dct.items():
+                if type(VALUE) not in UNIQUE_TYPES:
+                    if inspect.isroutine(VALUE):
+                        dct2[cls.to_dict(KEY)] = cls.to_dict(VALUE, is_inner_func=True)
+                    else:
+                        dct2[cls.to_dict(KEY)] = cls.to_dict(VALUE)
+            return dct2
+        
         if type(obj) in (int, float, bool, str, nonetype):
             return obj
 
@@ -48,8 +60,6 @@ class Parser:
         if type(obj) in (smethodtype, cmethodtype):
             return {TYPE_KW: type(obj).__name__,
                     SOURCE_KW: cls.to_dict(obj.__func__, is_inner_func)}
-
-        
 
     @classmethod
     def from_dict(cls, obj, is_dict=False):
