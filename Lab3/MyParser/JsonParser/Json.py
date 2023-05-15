@@ -1,5 +1,6 @@
 import re
 import regex
+from MySerializer import Serializer
 from MyParser.Parser import Parser
 from MyParser import nonetype
 from MyParser.JsonParser import TRUE_LITERAL, FALSE_LITERAL, NULL_LITERAL, INT_PATTERN, FLOAT_PATTERN, BOOL_PATTERN, \
