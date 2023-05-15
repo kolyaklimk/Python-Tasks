@@ -12,6 +12,7 @@ class Json(Serializer):
         def dumps_from_dict(string) -> str:
             if type(string) is nonetype:
                 return NULL_LITERAL
+            
             if type(string) is bool:
                 return TRUE_LITERAL if string else FALSE_LITERAL
 
@@ -21,6 +22,12 @@ class Json(Serializer):
             if type(string) in (int, float):
                 return str(string)
 
+            if type(string) is list:
+                return '[' + ", ".join([dumps_from_dict(item) for item in string]) + ']'
+
+            if type(string) is dict:
+                return '{' + ", ".join([f"{dumps_from_dict(item[0])}: "
+                                        f"{dumps_from_dict(item[1])}" for item in string.items()]) + '}'
             else:
                 raise ValueError
 
