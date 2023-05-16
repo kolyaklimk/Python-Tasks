@@ -5,27 +5,13 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-import Lab3
+import kolyaklimkLab3
 
 setup(
     name="kolyaklimkLab3",
-    version="0.1.0",
-    description="Demo library",
-    author="kolyaklimk",
+    version="4.0.0",
+    description='',
     author_email="kolyaklimk@gmail.com",
-    license="MIT",
-    classifiers=[
-        "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Operating System :: OS Independent"
-    ],
-    packages=find_packages(include=['Lab3']),
-    include_package_data=True,
-    install_requires=["regex"]
+    packages=find_packages(include=["kolyaklimkLab3", "kolyaklimkLab3.*"]),
+    zip_safe=False
 )

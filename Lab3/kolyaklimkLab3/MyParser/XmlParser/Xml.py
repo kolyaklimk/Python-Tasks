@@ -1,7 +1,7 @@
 import regex
-from Lab3.MySerializer import Serializer
-from Lab3.MyParser import Parser, nonetype
-from Lab3.MyParser.XmlParser import KEY_GROUP_NAME, VALUE_GROUP_NAME, XML_SCHEME_SOURCE, XML_ELEMENT_PATTERN, \
+from kolyaklimkLab3.MySerializer import Serializer
+from kolyaklimkLab3.MyParser import Parser, nonetype
+from kolyaklimkLab3.MyParser.XmlParser import KEY_GROUP_NAME, VALUE_GROUP_NAME, XML_SCHEME_SOURCE, XML_ELEMENT_PATTERN, \
     FIRST_XML_ELEMENT_PATTERN
 
 

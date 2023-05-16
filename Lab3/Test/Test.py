@@ -1,6 +1,6 @@
 import unittest
-from Lab3.MySerializer import Factory
-from Lab3.MySerializer import SerializerType
+from kolyaklimkLab3.MySerializer import Factory
+from kolyaklimkLab3.MySerializer import SerializerType
 
 ''' Constants'''
 FOR_TEST = [1436, 74, 1, 6, 4315.64, "string", bytes([6, 17, 5]), frozenset({13, 25}), "[14 , 1322, dfs3, 55]", bytearray([3, 7, 9]), 153 + 3j,
