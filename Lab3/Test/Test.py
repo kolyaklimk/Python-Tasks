@@ -67,3 +67,89 @@ decorated_func = my_dec(for_dec)
 class SerializationTestCase(unittest.TestCase):
     json = Factory.create_serializer(SerializerType.JSON)
     xml = Factory.create_serializer(SerializerType.XML)
+
+    def test_json(self):
+        test = self.json.dumps(FOR_TEST)
+        test = self.json.loads(test)
+
+        self.assertEqual(FOR_TEST, test)
+
+    def test_xml(self):
+        test = self.xml.dumps(FOR_TEST)
+        test = self.xml.loads(test)
+
+        self.assertEqual(FOR_TEST, test)
+
+    def test_json_class(self):
+        test_cl = self.json.dumps(TestClass2)
+        test_cl = self.json.loads(test_cl)
+
+        orig = [TestClass2.A, TestClass2.B, TestClass2.C, TestClass2._X, TestClass2.tst4(), TestClass2.test_string(),
+                TestClass2.test_classmethod(), ]
+        my_ser = [test_cl.A, test_cl.B, test_cl.C, test_cl._X, test_cl.tst4(), test_cl.test_string(),
+                  test_cl.test_classmethod()]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_xml_class(self):
+        test_cl = self.xml.dumps(TestClass2)
+        test_cl = self.xml.loads(test_cl)
+
+        orig = [TestClass2.A, TestClass2.B, TestClass2.C, TestClass2._X, TestClass2.tst4(), TestClass2.test_string()]
+        my_ser = [test_cl.A, test_cl.B, test_cl.C, test_cl._X, test_cl.tst4(), test_cl.test_string()]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_json_func(self):
+        func = self.json.dumps(rec_func)
+        func = self.json.loads(func)
+
+        orig = [rec_func(p) for p in range(34)]
+        my_ser = [func(p) for p in range(34)]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_xml_func(self):
+        func = self.xml.dumps(rec_func)
+        func = self.xml.loads(func)
+
+        orig = [rec_func(i) for i in range(84)]
+        my_ser = [func(i) for i in range(84)]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_json_gen(self):
+        s_gen = self.json.dumps(gen)
+        s_gen = self.json.loads(s_gen)
+
+        orig = [*gen()]
+        my_ser = [*s_gen()]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_xml_gen(self):
+        s_gen = self.xml.dumps(gen)
+        s_gen = self.xml.loads(s_gen)
+
+        orig = [*gen()]
+        my_ser = [*s_gen()]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_json_dec(self):
+        df = self.json.dumps(decorated_func)
+        df = self.json.loads(df)
+
+        orig = [decorated_func(i) for i in range(46)]
+        my_ser = [df(i) for i in range(46)]
+
+        self.assertEqual(orig, my_ser)
+
+    def test_xml_dec(self):
+        df = self.xml.dumps(decorated_func)
+        df = self.xml.loads(df)
+
+        orig = [decorated_func(i) for i in range(26)]
+        my_ser = [df(i) for i in range(26)]
+
+        self.assertEqual(orig, my_ser)
