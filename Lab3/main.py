@@ -1,4 +1,4 @@
-from MySerializer.Factory import Factory, SerializerType
+from Lab3.MySerializer import Factory, SerializerType
 
 import math
 

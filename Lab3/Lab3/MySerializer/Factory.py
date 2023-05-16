@@ -1,7 +1,7 @@
 from enum import Enum
 
-from MyParser.XmlParser.Xml import Xml
-from MyParser.JsonParser.Json import Json
+from Lab3.MyParser.XmlParser.Xml import Xml
+from Lab3.MyParser.JsonParser.Json import Json
 
 
 class SerializerType(Enum):
