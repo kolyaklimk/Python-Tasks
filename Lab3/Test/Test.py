@@ -153,3 +153,7 @@ class SerializationTestCase(unittest.TestCase):
         my_ser = [df(i) for i in range(26)]
 
         self.assertEqual(orig, my_ser)
+
+
+if __name__ == '__main__':
+    unittest.main()
