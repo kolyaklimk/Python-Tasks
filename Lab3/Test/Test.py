@@ -62,3 +62,8 @@ def gen():
 
 
 decorated_func = my_dec(for_dec)
+
+
+class SerializationTestCase(unittest.TestCase):
+    json = Factory.create_serializer(SerializerType.JSON)
+    xml = Factory.create_serializer(SerializerType.XML)
