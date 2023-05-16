@@ -12,12 +12,9 @@ class SerializerType(Enum):
 class Factory:
     @staticmethod
     def create_serializer(st: SerializerType):
-
         if st == SerializerType.JSON:
             return Json()
-
         elif st == SerializerType.XML:
             return Xml()
-
         else:
             raise Exception("Unknown type")
