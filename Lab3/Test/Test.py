@@ -3,8 +3,8 @@ from MySerializer.Factory import Factory
 from MySerializer.Factory import SerializerType
 
 ''' Constants'''
-FOR_TEST = [1436, 74, 1, 6, 4315.64, "string", bytes([6, 17, 5]), "[1 , 2, 3, 5]", bytearray([3, 7, 9]), 153 + 3j,
-            {15, 2, 523, 76, 4}, None, (21, 5424, 53, 212, 65), frozenset({1, 2}), [], [1, 2, 3],
+FOR_TEST = [1436, 74, 1, 6, 4315.64, "string", bytes([6, 17, 5]), frozenset({13, 25}), "[14 , 1322, dfs3, 55]", bytearray([3, 7, 9]), 153 + 3j,
+            {15, 2, 523, 76, 4}, None, (21, 5424, 53, 212, 65),[], [12, 21, 633],
             {41: {153: {151: {163: 64}}}}, 6243, 6, 7, 134, 6, "asdsafas", "cdsaf asdf 43fdsa", '432412', "fafae", 5312,
             6, 123, 2 + 6j, [53, 51, 56], ("dasd", "gdvc", "65324"), True, False]
 
