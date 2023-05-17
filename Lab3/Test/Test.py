@@ -3,8 +3,9 @@ from kolyaklimkLab3.MySerializer import Factory
 from kolyaklimkLab3.MySerializer import SerializerType
 
 ''' Constants'''
-FOR_TEST = [1436, 74, 1, 6, 4315.64, "string", bytes([6, 17, 5]), frozenset({13, 25}), "[14 , 1322, dfs3, 55]", bytearray([3, 7, 9]), 153 + 3j,
-            {15, 2, 523, 76, 4}, None, (21, 5424, 53, 212, 65),[], [12, 21, 633],
+FOR_TEST = [1436, 74, 1, 6, 4315.64, "string", bytes([6, 17, 5]), frozenset({13, 25}), "[14 , 1322, dfs3, 55]",
+            bytearray([3, 7, 9]), 153 + 3j,
+            {15, 2, 523, 76, 4}, None, (21, 5424, 53, 212, 65), [], [12, 21, 633],
             {41: {153: {151: {163: 64}}}}, 6243, 6, 7, 134, 6, "asdsafas", "cdsaf asdf 43fdsa", '432412', "fafae", 5312,
             6, 123, 2 + 6j, [53, 51, 56], ("dasd", "gdvc", "65324"), True, False]
 
@@ -24,7 +25,15 @@ class TestClass:
     _test_v = 14 / 2 - 7 * 2
 
 
-class TestClass2(TestClass):
+class TestClass3:
+    D = 43
+
+    @staticmethod
+    def func3():
+        return 3 * 3
+
+
+class TestClass2(TestClass, TestClass3):
     A = 5
     B = 66
     C = 41
@@ -95,8 +104,10 @@ class SerializationTestCase(unittest.TestCase):
         test_cl = self.xml.dumps(TestClass2)
         test_cl = self.xml.loads(test_cl)
 
-        orig = [TestClass2.A, TestClass2.B, TestClass2.C, TestClass2._X, TestClass2.tst4(), TestClass2.test_string()]
-        my_ser = [test_cl.A, test_cl.B, test_cl.C, test_cl._X, test_cl.tst4(), test_cl.test_string()]
+        orig = [TestClass2.func3(), TestClass2.D, TestClass2.A, TestClass2.B, TestClass2.C, TestClass2._X,
+                TestClass2.tst4(), TestClass2.test_string()]
+        my_ser = [test_cl.func3(), test_cl.D, test_cl.A, test_cl.B, test_cl.C, test_cl._X, test_cl.tst4(),
+                  test_cl.test_string()]
 
         self.assertEqual(orig, my_ser)
 
