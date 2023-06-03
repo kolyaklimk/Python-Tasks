@@ -1,0 +1,98 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block header %}
+
+.profile-button {
+float: right;
+margin-top: 10px;
+margin-right: 10px;
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+}
+
+.sort-buttons {
+margin-top: 10px;
+}
+
+.sort-button {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+margin-right: 10px;
+}
+
+.room-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+grid-gap: 20px;
+margin-top: 20px;
+list-style-type: none;
+}
+
+.room-item {
+cursor: pointer;
+background-color: #f2f2f2;
+padding: 20px;
+text-align: center;
+}
+
+.room-image {
+width: 175px;
+height: 175px;
+background-color: #ccc;
+margin-bottom: 10px;
+}
+
+.room-text {
+font-size: 16px;
+line-height: 1.2;
+margin-bottom: 5px;
+}
+
+{% endblock %}
+
+{% block content %}
+<div>
+    <button class="profile-button">Profile</button>
+</div>
+<div class="sort-buttons">
+    <button class="sort-button" onclick="sortPrice()">Sort by Price</button>
+    <button class="sort-button" onclick="sortCategory()">Sort by  Category</button>
+</div>
+<ul class="room-list">
+    {% for m in rooms %}
+    <li class="room-item" onclick="window.location.href='/room/{{ m.id }}';">
+        <div class="room-image"></div>
+        <div class="room-text">{{ m }}</div>
+        <div class="room-text">Capacity: {{ m.capacity }}</div>
+        <div class="room-text">Price: {{ m.price }}</div>
+    </li>
+    {% empty %}
+    <li>No rooms</li>
+    {% endfor %}
+</ul>
+
+<script>
+    function sortPrice() {
+      // Логика для сортировки по цене
+    }
+
+    function sortCriteria() {
+      // Логика для сортировки по критерию
+    }
+</script>
+
+{% endblock %}
