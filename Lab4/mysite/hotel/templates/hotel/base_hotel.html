@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel</title>
+    <style>
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #4CAF50;
+    }
+
+    .register-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+{% block header %}
+{% endblock %}
+
+
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <label class="logo" onclick="window.location.href='{%url 'hotel:hotel_list' %}';">Hotel</label>
+    {% if user.is_authenticated %}
+
+    <div>
+        <label class="logo">{{user.username}}</label>
+        <div class="register-button" onclick="location.href='{%url 'auth_user:logout' %}'">Sign Out</div>
+    </div>
+    {% else %}
+    <div>
+        <div class="register-button" onclick="location.href='{%url 'auth_user:register' %}'">Sigh Up</div>
+        <div class="register-button" onclick="location.href='{%url 'auth_user:login' %}'">Sign In</div>
+    </div>
+    {% endif %}
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
