@@ -18,7 +18,7 @@ class RegisterUserForm(UserCreationForm):
     password2 = forms.CharField(label='Password replay', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
     birth_date = forms.DateField(
-        widget=forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date', 'class': 'form-control'}),
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         label='Birth date', validators=[validate_age])
 
     phone_number = forms.CharField(
