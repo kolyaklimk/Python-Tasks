@@ -29,27 +29,26 @@ list-style-type: none;
 
 <ul class="room-list">
     {% for booking in all_booking %}
-    <li class="room-item">
-        <div class="room-text">
-            <label>{{ booking.room }}</label><br>
-            <label>Check in/out: </label>
-            <label>{{ booking.check_in_date }} --></label>
-            <label>{{ booking.check_out_date }}</label><br>
-        </div>
+    <form method="post">
         {% csrf_token %}
-        <button class="register-button"
-                onclick="window.location.href = '{% url 'profile_user:delete_booking' booking.id %}'">
-            Delete
-        </button>
-    </li>
+        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+        <li class="room-item">
+            <div class="room-text">
+                <label>{{ booking.room }}</label><br>
+                <label>Check in/out: </label>
+                <label>{{ booking.check_in_date }} --></label>
+                <label>{{ booking.check_out_date }}</label><br>
+            </div>
+            <button class="register-button" name="delete_item"> Delete</button>
+        </li>
+    </form>
     {% empty %}
     <li>No rooms</li>
     {% endfor %}
 </ul>
-<button class="register-button"
-        style="text-align: center;"
-        onclick="window.location.href = ''">
-    Confirm
-</button>
+<form method="post">
+    {% csrf_token %}
+    <button class="register-button" name="confirm"> Confirm</button>
+</form>
 
 {% endblock %}
