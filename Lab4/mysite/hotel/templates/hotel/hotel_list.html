@@ -65,12 +65,13 @@ margin-bottom: 5px;
 {% endblock %}
 
 {% block content %}
+
 <div>
     <button class="profile-button">Profile</button>
 </div>
 <div class="sort-buttons">
     <button class="sort-button" onclick="sortPrice()">Sort by Price</button>
-    <button class="sort-button" onclick="sortCategory()">Sort by  Category</button>
+    <button class="sort-button" onclick="sortCategory()">Sort by Category</button>
 </div>
 <ul class="room-list">
     {% for m in rooms %}
@@ -93,6 +94,7 @@ margin-bottom: 5px;
     function sortCriteria() {
       // Логика для сортировки по критерию
     }
+
 </script>
 
 {% endblock %}
