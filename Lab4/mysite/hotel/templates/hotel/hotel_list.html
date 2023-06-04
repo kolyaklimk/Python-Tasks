@@ -66,13 +66,21 @@ margin-bottom: 5px;
 
 {% block content %}
 
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 <div>
     <button class="profile-button">Profile</button>
 </div>
-    {% endif %}
+{% endif %}
 <div class="sort-buttons">
-    <button class="sort-button" onclick="sortPrice()">Sort by Price</button>
+
+    {% if is_sort_by_price %}
+    <button class="sort-button" onclick="window.location.href = '{% url 'hotel:hotel_list' %}'">Sort by Price</button>
+    {% else %}
+    <button class="sort-button" onclick="window.location.href = '{% url 'hotel:hotel_list_sort_by_price' %}'">Sort by
+        Price
+    </button>
+    {% endif %}
+
     <button class="sort-button" onclick="sortCategory()">Sort by Category</button>
 </div>
 <ul class="room-list">
@@ -87,16 +95,5 @@ margin-bottom: 5px;
     <li>No rooms</li>
     {% endfor %}
 </ul>
-
-<script>
-    function sortPrice() {
-      // Логика для сортировки по цене
-    }
-
-    function sortCriteria() {
-      // Логика для сортировки по критерию
-    }
-
-</script>
 
 {% endblock %}
