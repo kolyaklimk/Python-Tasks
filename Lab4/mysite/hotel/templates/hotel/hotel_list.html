@@ -49,10 +49,11 @@ margin-bottom: 5px;
 
 {% block content %}
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and not user.is_superuser %}
 <div>
     <button class="profile-button"
-    onclick="window.location.href = '{% url 'profile_user:profile' %}'">Profile</button>
+            onclick="window.location.href = '{% url 'profile_user:profile' %}'">Profile
+    </button>
 </div>
 {% endif %}
 <div class="sort-buttons">
@@ -95,11 +96,24 @@ margin-bottom: 5px;
         <div class="room-image"></div>
         <div class="room-text">{{ m }}</div>
         <div class="room-text">Capacity: {{ m.capacity }}</div>
-        <div claыss="room-text">Price: {{ m.price }}</div>
+        <div class="room-text">Price: {{ m.price }}</div>
+        {% if user.is_superuser%}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="room_id" value="{{ m.id }}">
+            <button name="delete_room" class="register-button">
+                Delete
+            </button>
+        </form>
+        {%endif%}
     </li>
     {% empty %}
     <li>No rooms</li>
     {% endfor %}
+
+    {% if user.is_superuser %}
+    <button class="register-button">Add</button>
+    {%endif%}
 </ul>
 
 {% endblock %}
