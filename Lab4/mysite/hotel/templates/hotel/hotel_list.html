@@ -56,8 +56,17 @@ margin-bottom: 5px;
     </button>
 </div>
 {% endif %}
-<div class="sort-buttons">
 
+{% if user.is_superuser %}
+<button class="profile-button"
+        onclick="window.location.href = '{% url 'hotel:room_create' %}'">Analyse
+</button>
+<button class="profile-button"
+        onclick="window.location.href = '{% url 'hotel:room_create' %}'">Add
+</button>
+{%endif%}
+
+<div class="sort-buttons">
     {% if is_sort_by_price %}
     <button class="register-button" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort
         by
@@ -110,10 +119,5 @@ margin-bottom: 5px;
     {% empty %}
     <li>No rooms</li>
     {% endfor %}
-
-    {% if user.is_superuser %}
-    <button class="register-button">Add</button>
-    {%endif%}
 </ul>
-
 {% endblock %}
