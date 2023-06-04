@@ -43,7 +43,7 @@ class Booking(models.Model):
         ('paid', 'Paid'),
         ('cart', 'Cart'),
     ]
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='paid')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='cart')
 
     def __str__(self):
         return f"Booking {self.id} - {self.client} ({self.room})"
