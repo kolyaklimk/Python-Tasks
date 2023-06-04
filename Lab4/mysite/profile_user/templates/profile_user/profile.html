@@ -38,6 +38,7 @@ list-style-type: none;
                 <label>Check in/out: </label>
                 <label>{{ booking.check_in_date }} --></label>
                 <label>{{ booking.check_out_date }}</label><br>
+                <label>Total cost: {{ booking.calculate_total_cost }}</label>
             </div>
             <button class="register-button" name="delete_item"> Delete</button>
         </li>
