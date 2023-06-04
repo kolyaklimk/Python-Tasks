@@ -120,6 +120,9 @@ def create_room(request):
 
 
 def analyse(request):
+    if not request.user.is_authenticated:
+        return redirect("hotel:hotel_list", 0)
+
     bookings = Booking.objects.all()
     total_earnings = sum(booking.calculate_total_cost() for booking in bookings)
     return render(request, 'hotel/hotel_analyse.html', {'bookings': bookings,
