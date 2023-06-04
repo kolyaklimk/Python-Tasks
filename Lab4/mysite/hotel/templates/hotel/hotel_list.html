@@ -51,7 +51,8 @@ margin-bottom: 5px;
 
 {% if user.is_authenticated %}
 <div>
-    <button class="profile-button">Profile</button>
+    <button class="profile-button"
+    onclick="window.location.href = '{% url 'profile_user:profile' %}'">Profile</button>
 </div>
 {% endif %}
 <div class="sort-buttons">
