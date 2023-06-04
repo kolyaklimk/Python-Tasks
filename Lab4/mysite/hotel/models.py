@@ -41,3 +41,15 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.id} - {self.client} ({self.room})"
+
+
+class OrderHistory(models.Model):
+    STATUS_CHOICES = [
+        ('paid', 'Paid'),
+        ('cart', 'Cart'),
+    ]
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+
+    def __str__(self):
+        return f"{self.booking} - {self.status}"
