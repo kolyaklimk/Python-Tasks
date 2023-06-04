@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hotel.urls', namespace='hotel')),
     path('auth/', include('auth_user.urls', namespace='auth_user')),
+    path('profile/', include('profile_user.urls', namespace='profile_user')),
 ]
 
 if settings.DEBUG:

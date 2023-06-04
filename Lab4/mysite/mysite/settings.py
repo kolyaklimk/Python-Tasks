@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hotel',
-    'auth_user'
+    'auth_user',
+    'profile_user'
 ]
 
 AUTH_USER_MODEL = 'hotel.Client'
