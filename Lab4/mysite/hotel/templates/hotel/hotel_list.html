@@ -17,23 +17,6 @@ font-size: 16px;
 cursor: pointer;
 }
 
-.sort-buttons {
-margin-top: 10px;
-}
-
-.sort-button {
-background-color: #4CAF50;
-color: white;
-border: none;
-padding: 10px 20px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-cursor: pointer;
-margin-right: 10px;
-}
-
 .room-list {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -74,14 +57,36 @@ margin-bottom: 5px;
 <div class="sort-buttons">
 
     {% if is_sort_by_price %}
-    <button class="sort-button" onclick="window.location.href = '{% url 'hotel:hotel_list' %}'">Sort by Price</button>
-    {% else %}
-    <button class="sort-button" onclick="window.location.href = '{% url 'hotel:hotel_list_sort_by_price' %}'">Sort by
+    <button class="register-button" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort by
         Price
+    </button>
+    {% else %}
+    <button class="register-button"
+            onclick="window.location.href = '{% url 'hotel:hotel_list_sort_by_price' choose_category%}'">
+        Sort by Price
     </button>
     {% endif %}
 
-    <button class="sort-button" onclick="sortCategory()">Sort by Category</button>
+    <select class="register-button" id="categorySelector" onchange="redirectToSelectedCategory()" onselect=choose_category>
+        <option value="{% url 'hotel:hotel_list' 0 %}">All</option>
+        {% for category in categories %}
+        <option value="{% url 'hotel:hotel_list' category.id %}"
+                {% if category.id == choose_category %}
+                selected
+                {% endif %}>
+            {{ category.name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <script>
+    function redirectToSelectedCategory() {
+        var selectedOption = document.getElementById("categorySelector").value;
+        window.location.href = selectedOption;
+    }
+
+    </script>
+
 </div>
 <ul class="room-list">
     {% for m in rooms %}

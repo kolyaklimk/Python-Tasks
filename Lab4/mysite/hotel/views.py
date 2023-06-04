@@ -1,16 +1,31 @@
 from django.shortcuts import render, redirect
-from .models import Room, Client, Booking
+from .models import Room, Client, Booking, Category
 from django.shortcuts import get_object_or_404
 
 
-def room_list(request):
-    rooms = Room.objects.all()
-    return render(request, 'hotel/hotel_list.html', {'rooms': rooms})
+def room_list(request, category_id):
+    if category_id == 0:
+        rooms = Room.objects.all()
+    else:
+        rooms = Room.objects.filter(category_id=category_id)
+
+    categories = Category.objects.all()
+    return render(request, 'hotel/hotel_list.html', {'rooms': rooms,
+                                                     'categories': categories,
+                                                     'choose_category': category_id})
 
 
-def sort_rooms_by_price(request):
-    rooms = Room.objects.order_by('price')
-    return render(request, 'hotel/hotel_list.html', {'rooms': rooms, 'is_sort_by_price': True})
+def sort_rooms_by_price(request, category_id):
+    if category_id == 0:
+        rooms = Room.objects.order_by('price')
+    else:
+        rooms = Room.objects.filter(category_id=category_id).order_by('price')
+
+    categories = Category.objects.all()
+    return render(request, 'hotel/hotel_list.html', {'rooms': rooms,
+                                                     'is_sort_by_price': True,
+                                                     'categories': categories,
+                                                     'choose_category': category_id})
 
 
 def room_detail(request, room_id):

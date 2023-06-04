@@ -6,7 +6,7 @@ from django import forms
 
 def logout_user(request):
     logout(request)
-    return redirect('hotel:hotel_list')
+    return redirect('hotel:hotel_list', 0)
 
 
 def validate_age(value: date):

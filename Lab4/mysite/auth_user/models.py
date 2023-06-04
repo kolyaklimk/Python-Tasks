@@ -15,7 +15,7 @@ class RegisterUser(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect("hotel:hotel_list")
+        return redirect("hotel:hotel_list", 0)
 
 
 class LoginUser(LoginView):
@@ -23,4 +23,4 @@ class LoginUser(LoginView):
     template_name = 'logreg/log.html'
 
     def get_success_url(self):
-        return reverse_lazy("hotel:hotel_list")
+        return reverse_lazy("hotel:hotel_list", args=(0,))
