@@ -5,6 +5,9 @@ from hotel.models import Room, Booking
 
 # Create your views here.
 def get_book(request):
+    if not request.user.is_authenticated:
+        return redirect("hotel:hotel_list", 0)
+
     def get_booking():
         return Booking.objects.filter(client_id=request.user, status='cart')
 
