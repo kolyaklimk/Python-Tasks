@@ -52,8 +52,8 @@ def room_detail(request, room_id):
         check_in_date = datetime.strptime(request.POST['check_in_date'], '%Y-%m-%d').date()
         check_out_date = datetime.strptime(request.POST['check_out_date'], '%Y-%m-%d').date()
         has_child = request.POST.get('my_checkbox', False)
-        if check_in_date > check_out_date:
-            error_message = "Check in date < Check out date!"
+        if check_in_date >= check_out_date:
+            error_message = "Check in date <= Check out date!"
             return render(request, 'hotel/room_detail.html', {'error_message': error_message})
 
         periods = []
@@ -75,7 +75,7 @@ def room_detail(request, room_id):
             has_child=True if has_child == "on" else False
         )
         booking.save()
-        return redirect("hotel:hotel_list", 0)
+        return redirect("profile_user:profile")
 
     if request.method == 'POST' and 'edit_room' in request.POST:
         price = request.POST['price']
@@ -114,3 +114,10 @@ def create_room(request):
         return redirect("hotel:hotel_list", 0)
 
     return render(request, 'hotel/room_create.html', {'categories': categories})
+
+
+def analyse(request):
+    bookings = Booking.objects.all()
+    total_earnings = sum(booking.calculate_total_cost() for booking in bookings)
+    return render(request, 'hotel/hotel_analyse.html', {'bookings': bookings,
+                                                        'total_earnings': total_earnings})
