@@ -15,7 +15,7 @@ class Room(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     capacity = models.IntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    photo = models.ImageField(upload_to='product/', blank=True)
+    photo = models.ImageField(upload_to='static/', blank=True)
 
     def __str__(self):
         return f"Room {self.id} ({self.category})"

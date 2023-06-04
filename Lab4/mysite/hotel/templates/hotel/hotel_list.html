@@ -101,8 +101,11 @@ margin-bottom: 5px;
 </div>
 <ul class="room-list">
     {% for m in rooms %}
+
     <li class="room-item" onclick="window.location.href='{% url 'hotel:room_id' m.id %}'">
-        <div class="room-image"></div>
+        {% load static %}
+        <img src="{% static m.photo %}"
+             alt="My image" class="room-image">
         <div class="room-text">{{ m }}</div>
         <div class="room-text">Capacity: {{ m.capacity }}</div>
         <div class="room-text">Price: {{ m.price }}</div>

@@ -81,11 +81,13 @@ def room_detail(request, room_id):
         price = request.POST['price']
         capacity = request.POST['capacity']
         select = request.POST['select']
+        photo = request.POST['photo']
 
         category = get_object_or_404(Category, id=select)
         form.category = category
         form.capacity = capacity
         form.price = price
+        form.photo = photo
 
         form.save()
         form = get_object_or_404(Room, id=room_id)
@@ -102,12 +104,13 @@ def create_room(request):
         price = request.POST['price']
         capacity = request.POST['capacity']
         select = request.POST['select']
+        photo = request.POST['photo']
 
         category = get_object_or_404(Category, id=select)
 
         new_room = Room()
         new_room.category = category
-        new_room.photo = '1'
+        new_room.photo = photo
         new_room.capacity = capacity
         new_room.price = price
         new_room.save()

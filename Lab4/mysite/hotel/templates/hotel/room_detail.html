@@ -6,7 +6,8 @@
 width: 300px;
 height: 300px;
 background-color: #ccc;
-margin: 0 auto 10px;
+display: block;
+margin: 0 auto;
 }
 
 .room-text {
@@ -19,7 +20,9 @@ text-align: center
 {% endblock %}
 
 {% block content %}
-<div class="room-image"></div>
+{% load static %}
+<img src="{% static form.photo %}"
+     alt="My image" class="room-image">
 <div class="room-text">
     <div>{{ form }}</div>
     <div>Capacity: {{ form.capacity }}</div>
@@ -59,6 +62,9 @@ text-align: center
 
         <label>Capacity:</label>
         <input type="number" min="0" name="capacity" required><br>
+
+        <label>Photo:</label>
+        <input name="photo" required placeholder="1.jpg"><br>
 
         <label>Category:</label>
         <select class="register-button" name="select">
