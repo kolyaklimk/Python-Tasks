@@ -1,0 +1,48 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block header %}
+
+.room-text {
+font-size: 22px;
+line-height: 1.2;
+margin-bottom: 5px;
+}
+
+.room-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+grid-gap: 20px;
+margin-top: 20px;
+list-style-type: none;
+}
+
+.room-item {
+cursor: pointer;
+background-color: #f2f2f2;
+padding: 20px;
+text-align: center;
+}
+
+{% endblock %}
+
+{% block content %}
+<Label class="room-text" style="text-align: center;">Total earnings: {{total_earnings}}</Label>
+
+<ul class="room-list">
+    {% for booking in bookings %}
+    <li class="room-item">
+        <div class="room-text">
+            <label>Name: {{ booking.client }}</label><br>
+            <label>Phone: {{ booking.client.phone_number }}</label><br>
+            <label>Has child: {{ booking.has_child }}</label><br>
+            <label>Check-In: {{ booking.check_in_date }}</label><br>
+            <label>Check-Out: {{ booking.check_out_date }}</label><br>
+            <label>Status: {{ booking.status }}</label><br>
+            <label>Total cost: {{ booking.calculate_total_cost }}</label>
+        </div>
+    </li>
+    {% empty %}
+    <li>No booking</li>
+    {% endfor %}
+</ul>
+{% endblock %}
