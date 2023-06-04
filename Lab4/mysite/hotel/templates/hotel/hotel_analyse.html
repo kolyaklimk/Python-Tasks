@@ -26,7 +26,10 @@ text-align: center;
 {% endblock %}
 
 {% block content %}
-<Label class="room-text" style="text-align: center;">Total earnings: {{total_earnings}}</Label>
+<Label class="room-text" style="text-align: center;">Total earnings: {{total_earnings}}</Label><br>
+<Label class="room-text" style="text-align: center;">Average bill: {{average_bill}}</Label><br><br>
+<Label class="room-text" style="text-align: center;">The most popular room: {{most_popular_room}}</Label><br>
+<Label class="room-text" style="text-align: center;">It has a total of {{total_bookings}} bookings</Label><br>
 
 <ul class="room-list">
     {% for booking in bookings %}

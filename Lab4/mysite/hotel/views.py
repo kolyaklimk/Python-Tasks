@@ -1,8 +1,11 @@
 from datetime import datetime
 
 from django.shortcuts import render, redirect
-from .models import Room, Category, Booking
+from .models import Room, Category, Booking, Client
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum, Count
+from django.db.models import F, ExpressionWrapper, DecimalField
+from django.db.models.functions import Coalesce
 
 
 def room_list(request, category_id):
@@ -124,6 +127,17 @@ def analyse(request):
         return redirect("hotel:hotel_list", 0)
 
     bookings = Booking.objects.all()
-    total_earnings = sum(booking.calculate_total_cost() for booking in bookings)
+    list_total_cost = [booking.calculate_total_cost() for booking in bookings]
+    sum_cost = sum(list_total_cost)
+    average_bill = sum_cost / len(list_total_cost)
+
+    popular_rooms = Booking.objects.values('room').annotate(total_bookings=Count('room')). \
+        order_by('-total_bookings').first()
+    total_bookings = popular_rooms['total_bookings']
+    room = Room.objects.get(id=popular_rooms['room'])
+
     return render(request, 'hotel/hotel_analyse.html', {'bookings': bookings,
-                                                        'total_earnings': total_earnings})
+                                                        'total_earnings': sum_cost,
+                                                        'average_bill': average_bill,
+                                                        'total_bookings': total_bookings,
+                                                        'most_popular_room': room})
