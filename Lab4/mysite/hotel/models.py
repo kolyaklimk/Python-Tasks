@@ -47,3 +47,7 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.id} - {self.client} ({self.room})"
+
+    def calculate_total_cost(self):
+        duration = self.check_out_date - self.check_in_date
+        return duration.days * self.room.price
