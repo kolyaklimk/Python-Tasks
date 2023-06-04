@@ -39,17 +39,11 @@ class Booking(models.Model):
     check_out_date = models.DateField()
     has_child = models.BooleanField(default=False)
 
-    def __str__(self):
-        return f"Booking {self.id} - {self.client} ({self.room})"
-
-
-class OrderHistory(models.Model):
     STATUS_CHOICES = [
         ('paid', 'Paid'),
         ('cart', 'Cart'),
     ]
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='paid')
 
     def __str__(self):
-        return f"{self.booking} - {self.status}"
+        return f"Booking {self.id} - {self.client} ({self.room})"
