@@ -5,7 +5,7 @@ from hotel.models import Room, Booking
 
 # Create your views here.
 def get_book(request):
-    all_booking = Booking.objects.filter(client_id=request.user)
+    all_booking = Booking.objects.filter(client_id=request.user, status='cart')
     return render(request, 'profile_user/profile.html', {'all_booking': all_booking})
 
 
