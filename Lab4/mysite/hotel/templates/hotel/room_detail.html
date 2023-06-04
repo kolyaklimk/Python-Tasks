@@ -26,7 +26,7 @@ text-align: center
     <div>Price: {{ form.price }}</div>
     <br>
 
-    {% if user.is_authenticated%}
+    {% if user.is_authenticated and not user.is_superuser%}
 
     {% if error_message %}
     <p>{{ error_message }}</p>
@@ -44,10 +44,32 @@ text-align: center
             <label>Has_child:</label>
             <input type="checkbox" name="has_child"><br>
 
-            <button class="register-button">Book a room</button>
+            <button class="register-button" name="book_room">Book a room</button>
         </div>
     </form>
 </div>
+{%endif%}
+
+{% if user.is_superuser %}
+<form method="POST">
+    {% csrf_token %}
+    <div style="text-align: center;">
+        <label>Price:</label>
+        <input type="number" min="0" step="any" name="price" required><br>
+
+        <label>Capacity:</label>
+        <input type="number" min="0" name="capacity" required><br>
+
+        <label>Category:</label>
+        <select class="register-button" name="select">
+            {% for category in categories %}
+            <option value="{{ category.id }}"> {{ category.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button class="register-button" name="edit_room">Edit</button>
+    </div>
+</form>
 {%endif%}
 
 {% endblock %}
