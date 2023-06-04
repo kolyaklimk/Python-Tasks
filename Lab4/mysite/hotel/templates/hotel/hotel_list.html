@@ -66,9 +66,11 @@ margin-bottom: 5px;
 
 {% block content %}
 
+    {% if user.is_authenticated %}
 <div>
     <button class="profile-button">Profile</button>
 </div>
+    {% endif %}
 <div class="sort-buttons">
     <button class="sort-button" onclick="sortPrice()">Sort by Price</button>
     <button class="sort-button" onclick="sortCategory()">Sort by Category</button>
