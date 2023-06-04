@@ -30,7 +30,7 @@ def sort_rooms_by_price(request, category_id):
 
 def room_detail(request, room_id):
     form = get_object_or_404(Room, id=room_id)
-    return render(request, 'room_form.html', {'form': form})
+    return render(request, 'hotel/room_detail.html', {'form': form})
 
 # def create_room(request):
 #     form = RoomForm(request.POST or None)

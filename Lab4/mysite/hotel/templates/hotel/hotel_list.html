@@ -57,7 +57,8 @@ margin-bottom: 5px;
 <div class="sort-buttons">
 
     {% if is_sort_by_price %}
-    <button class="register-button" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort by
+    <button class="register-button" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort
+        by
         Price
     </button>
     {% else %}
@@ -67,7 +68,8 @@ margin-bottom: 5px;
     </button>
     {% endif %}
 
-    <select class="register-button" id="categorySelector" onchange="redirectToSelectedCategory()" onselect=choose_category>
+    <select class="register-button" id="categorySelector" onchange="redirectToSelectedCategory()"
+            onselect=choose_category>
         <option value="{% url 'hotel:hotel_list' 0 %}">All</option>
         {% for category in categories %}
         <option value="{% url 'hotel:hotel_list' category.id %}"
@@ -78,23 +80,21 @@ margin-bottom: 5px;
         </option>
         {% endfor %}
     </select>
-
     <script>
     function redirectToSelectedCategory() {
         var selectedOption = document.getElementById("categorySelector").value;
         window.location.href = selectedOption;
     }
-
     </script>
 
 </div>
 <ul class="room-list">
     {% for m in rooms %}
-    <li class="room-item" onclick="window.location.href='/room/{{ m.id }}';">
+    <li class="room-item" onclick="window.location.href='{% url 'hotel:room_id' m.id %}'">
         <div class="room-image"></div>
         <div class="room-text">{{ m }}</div>
         <div class="room-text">Capacity: {{ m.capacity }}</div>
-        <div class="room-text">Price: {{ m.price }}</div>
+        <div claыss="room-text">Price: {{ m.price }}</div>
     </li>
     {% empty %}
     <li>No rooms</li>

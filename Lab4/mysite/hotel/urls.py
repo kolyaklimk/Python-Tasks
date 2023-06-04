@@ -6,7 +6,7 @@ app_name = 'hotel'
 urlpatterns = [
     path('sort_by/<int:category_id>/', views.room_list, name='hotel_list'),
     path('sort_by/<int:category_id>/sort_by_price/', views.sort_rooms_by_price, name='hotel_list_sort_by_price'),
-    path('<int:id>', views.room_detail),
+    path('room/<int:room_id>', views.room_detail, name='room_id')
     # path('edit/<int:id>/', views.product_edit),
     # path('delete/<int:id>/', views.product_delete),
     # path('create/', views.product_create),
