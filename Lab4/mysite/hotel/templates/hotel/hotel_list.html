@@ -106,11 +106,12 @@ text-align: center;
         var selectedOption = document.getElementById("categorySelector").value;
         window.location.href = selectedOption;
     }
-
-
     </script>
 
 </div>
+{% if user.is_authenticated and user.is_superuser %}
+<label>Quote: {{timezone_context.quote}}</label>
+{%endif%}
 <ul class="room-list">
     {% for m in rooms %}
 

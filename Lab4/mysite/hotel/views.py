@@ -6,9 +6,28 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.utils import timezone
 import calendar
+import requests
 
 
-def timezone_context():
+def timezone_context(request):
+    quote = ''
+    if request.user.is_authenticated:
+        url = 'http://api.forismatic.com/api/1.0/'
+        params = {
+            'method': 'getQuote',
+            'format': 'json',
+            'lang': 'en'
+        }
+        response = requests.get(url, params=params)
+        print(quote)
+        try:
+            if response.status_code == 200:
+                data = response.json()
+                quote = (data['quoteText'])
+            else:
+                quote = ('Ошибка при выполнении запроса:', response.status_code)
+        except:
+            quote = 'No internet connection'
     user_timezone = timezone.get_current_timezone()
     current_date = timezone.now()
     c = calendar.HTMLCalendar(calendar.MONDAY).formatmonth(datetime.now().year, datetime.now().month)
@@ -16,6 +35,7 @@ def timezone_context():
         'user_timezone': user_timezone,
         'current_date': current_date,
         'calendar': c,
+        'quote': quote
     }
     return context
 
@@ -31,7 +51,7 @@ def room_list(request, category_id):
         return render(request, 'hotel/hotel_list.html', {'rooms': rooms,
                                                          'categories': categories,
                                                          'choose_category': category_id,
-                                                         'timezone_context': timezone_context()})
+                                                         'timezone_context': timezone_context(request)})
 
     if request.method == 'POST' and 'delete_room' in request.POST:
         room = get_object_or_404(Room, id=request.POST['room_id'])
@@ -52,7 +72,7 @@ def sort_rooms_by_price(request, category_id):
                                                      'is_sort_by_price': True,
                                                      'categories': categories,
                                                      'choose_category': category_id,
-                                                     'timezone_context': timezone_context()})
+                                                     'timezone_context': timezone_context(request)})
 
 
 def room_detail(request, room_id):
