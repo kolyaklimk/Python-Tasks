@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Room, Category, Booking
 from django.shortcuts import get_object_or_404
@@ -8,6 +7,11 @@ from django.db.models import Count
 from django.utils import timezone
 import calendar
 import requests
+import matplotlib.pyplot as plt
+import numpy as np
+from django.shortcuts import render
+import io
+import base64
 
 
 def timezone_context(request):
@@ -181,8 +185,15 @@ def analyse(request):
     total_bookings = popular_rooms['total_bookings']
     room = Room.objects.get(id=popular_rooms['room'])
 
+    plt.plot(list_total_cost)
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    plot_data = base64.b64encode(buf.read()).decode('ascii')
+
     return render(request, 'hotel/hotel_analyse.html', {'bookings': bookings,
                                                         'total_earnings': sum_cost,
                                                         'average_bill': average_bill,
                                                         'total_bookings': total_bookings,
-                                                        'most_popular_room': room})
+                                                        'most_popular_room': room,
+                                                        'plot_data': plot_data})
