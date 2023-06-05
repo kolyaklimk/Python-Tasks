@@ -1,11 +1,20 @@
 from datetime import datetime
 
 from django.shortcuts import render, redirect
-from .models import Room, Category, Booking, Client
+from .models import Room, Category, Booking
 from django.shortcuts import get_object_or_404
-from django.db.models import Sum, Count
-from django.db.models import F, ExpressionWrapper, DecimalField
-from django.db.models.functions import Coalesce
+from django.db.models import Count
+from django.utils import timezone
+
+
+def timezone_context():
+    user_timezone = timezone.get_current_timezone()
+    current_date = timezone.now()
+    context = {
+        'user_timezone': user_timezone,
+        'current_date': current_date,
+    }
+    return context
 
 
 def room_list(request, category_id):
@@ -18,7 +27,8 @@ def room_list(request, category_id):
         categories = Category.objects.all()
         return render(request, 'hotel/hotel_list.html', {'rooms': rooms,
                                                          'categories': categories,
-                                                         'choose_category': category_id})
+                                                         'choose_category': category_id,
+                                                         'timezone_context': timezone_context()})
 
     if request.method == 'POST' and 'delete_room' in request.POST:
         room = get_object_or_404(Room, id=request.POST['room_id'])
@@ -38,7 +48,8 @@ def sort_rooms_by_price(request, category_id):
     return render(request, 'hotel/hotel_list.html', {'rooms': rooms,
                                                      'is_sort_by_price': True,
                                                      'categories': categories,
-                                                     'choose_category': category_id})
+                                                     'choose_category': category_id,
+                                                     'timezone_context': timezone_context()})
 
 
 def room_detail(request, room_id):

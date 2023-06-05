@@ -45,6 +45,16 @@ line-height: 1.2;
 margin-bottom: 5px;
 }
 
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 10px;
+  text-align: center;
+}
+
 {% endblock %}
 
 {% block content %}
@@ -96,6 +106,7 @@ margin-bottom: 5px;
         var selectedOption = document.getElementById("categorySelector").value;
         window.location.href = selectedOption;
     }
+
     </script>
 
 </div>
@@ -123,4 +134,9 @@ margin-bottom: 5px;
     <li>No rooms</li>
     {% endfor %}
 </ul>
+<div class="footer">
+  <label>User Timezone: {{ timezone_context.user_timezone }} |</label>
+  <label>Current Date: {{ timezone_context.current_date|date:"d/m/Y" }}</label>
+</div>
+
 {% endblock %}
