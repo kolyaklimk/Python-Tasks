@@ -5,14 +5,17 @@ from .models import Room, Category, Booking
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.utils import timezone
+import calendar
 
 
 def timezone_context():
     user_timezone = timezone.get_current_timezone()
     current_date = timezone.now()
+    c = calendar.HTMLCalendar(calendar.MONDAY).formatmonth(datetime.now().year, datetime.now().month)
     context = {
         'user_timezone': user_timezone,
         'current_date': current_date,
+        'calendar': c,
     }
     return context
 
