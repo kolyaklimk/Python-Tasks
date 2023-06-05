@@ -109,8 +109,9 @@ text-align: center;
     </script>
 
 </div>
-{% if user.is_authenticated and user.is_superuser %}
-<label>Quote: {{timezone_context.quote}}</label>
+{% if user.is_authenticated or user.is_superuser %}
+<label>Quote: {{timezone_context.quote}}</label><br>
+<label>Joke: {{timezone_context.joke}}</label>
 {%endif%}
 <ul class="room-list">
     {% for m in rooms %}

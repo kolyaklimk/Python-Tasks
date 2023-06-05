@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Room, Category, Booking
 from django.shortcuts import get_object_or_404
@@ -11,6 +12,7 @@ import requests
 
 def timezone_context(request):
     quote = ''
+    joke = ''
     if request.user.is_authenticated:
         url = 'http://api.forismatic.com/api/1.0/'
         params = {
@@ -19,15 +21,23 @@ def timezone_context(request):
             'lang': 'en'
         }
         response = requests.get(url, params=params)
-        print(quote)
+
+        url = "https://icanhazdadjoke.com/"
+        headers = {"Accept": "application/json"}
+        response_joke = requests.get(url, headers=headers)
+
         try:
-            if response.status_code == 200:
+            if response.status_code == 200 or response_joke.status_code == 200:
                 data = response.json()
                 quote = (data['quoteText'])
+                joke = response_joke.json()['joke']
             else:
                 quote = ('Ошибка при выполнении запроса:', response.status_code)
+                joke = ('Ошибка при выполнении запроса:', response.status_code)
         except:
             quote = 'No internet connection'
+            joke = 'No internet connection'
+
     user_timezone = timezone.get_current_timezone()
     current_date = timezone.now()
     c = calendar.HTMLCalendar(calendar.MONDAY).formatmonth(datetime.now().year, datetime.now().month)
@@ -35,7 +45,8 @@ def timezone_context(request):
         'user_timezone': user_timezone,
         'current_date': current_date,
         'calendar': c,
-        'quote': quote
+        'quote': quote,
+        'joke': joke,
     }
     return context
 
