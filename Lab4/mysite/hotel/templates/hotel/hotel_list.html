@@ -1,0 +1,146 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block header %}
+
+.profile-button {
+float: right;
+margin-top: 10px;
+margin-right: 10px;
+background-color: #003f7d;
+color: white;
+border: none;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+}
+
+.room-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+grid-gap: 20px;
+margin-top: 20px;
+list-style-type: none;
+}
+
+.room-item {
+cursor: pointer;
+background-color: #f2f2f2;
+padding: 20px;
+text-align: center;
+}
+
+.room-image {
+width: 150px;
+height: 150px;
+background-color: #ccc;
+margin: 0 auto 10px;
+}
+
+.room-text {
+font-size: 16px;
+line-height: 1.2;
+margin-bottom: 5px;
+}
+
+.footer {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background-color: #f9f9f9;
+padding: 10px;
+text-align: center;
+}
+
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated and not user.is_superuser %}
+<div>
+    <button class="profile-button"
+            onclick="window.location.href = '{% url 'profile_user:profile' %}'">Profile
+    </button>
+</div>
+{% endif %}
+
+{% if user.is_superuser %}
+<button class="profile-button"
+        onclick="window.location.href = '{% url 'hotel:hotel_analyse' %}'">Analyse
+</button>
+<button class="profile-button"
+        onclick="window.location.href = '{% url 'hotel:room_create' %}'">Add
+</button>
+{%endif%}
+
+<div class="sort-buttons">
+    {% if is_sort_by_price %}
+    <button class="register-button" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort
+        by
+        Price
+    </button>
+    {% else %}
+    <button class="register-button"
+            onclick="window.location.href = '{% url 'hotel:hotel_list_sort_by_price' choose_category%}'">
+        Sort by Price
+    </button>
+    {% endif %}
+
+    <select class="register-button" id="categorySelector" onchange="redirectToSelectedCategory()"
+            onselect=choose_category>
+        <option value="{% url 'hotel:hotel_list' 0 %}">All</option>
+        {% for category in categories %}
+        <option value="{% url 'hotel:hotel_list' category.id %}"
+                {% if category.id == choose_category %}
+                selected
+                {% endif %}>
+            {{ category.name }}
+        </option>
+        {% endfor %}
+    </select>
+    <script>
+    function redirectToSelectedCategory() {
+        var selectedOption = document.getElementById("categorySelector").value;
+        window.location.href = selectedOption;
+    }
+    </script>
+
+</div>
+{% if user.is_authenticated or user.is_superuser %}
+<label>Quote: {{timezone_context.quote}}</label><br>
+<label>Joke: {{timezone_context.joke}}</label>
+{%endif%}
+<ul class="room-list">
+    {% for m in rooms %}
+
+    <li class="room-item" onclick="window.location.href='{% url 'hotel:room_id' m.id %}'">
+        {% load static %}
+        <img src="{% static m.photo %}"
+             alt="My image" class="room-image">
+        <div class="room-text">{{ m }}</div>
+        <div class="room-text">Capacity: {{ m.capacity }}</div>
+        <div class="room-text">Price: {{ m.price }}</div>
+        {% if user.is_superuser%}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="room_id" value="{{ m.id }}">
+            <button name="delete_room" class="register-button">
+                Delete
+            </button>
+        </form>
+        {%endif%}
+    </li>
+    {% empty %}
+    <li>No rooms</li>
+    {% endfor %}
+</ul>
+<div class="room-text"><br>
+    {{ timezone_context.calendar|safe }}<br>
+    <label>User Timezone: {{ timezone_context.user_timezone }} |</label>
+    <label>Current Date: {{ timezone_context.current_date|date:"d/m/Y" }} </label>
+</div>
+
+{% endblock %}

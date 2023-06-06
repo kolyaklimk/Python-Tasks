@@ -1,0 +1,55 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block header %}
+.room-text {
+font-size: 18px;
+line-height: 1.2;
+margin-bottom: 5px;
+text-align: center
+}
+
+.room-item {
+cursor: pointer;
+background-color: #f2f2f2;
+padding: 20px;
+text-align: center;
+}
+
+.room-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+grid-gap: 20px;
+margin-top: 20px;
+list-style-type: none;
+}
+{% endblock %}
+
+
+{% block content %}
+
+<ul class="room-list">
+    {% for booking in all_booking %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+        <li class="room-item">
+            <div class="room-text">
+                <label>{{ booking.room }}</label><br>
+                <label>Check in/out: </label>
+                <label>{{ booking.check_in_date }} --></label>
+                <label>{{ booking.check_out_date }}</label><br>
+                <label>Total cost: {{ booking.calculate_total_cost }}</label>
+            </div>
+            <button class="register-button" name="delete_item"> Delete</button>
+        </li>
+    </form>
+    {% empty %}
+    <li>No rooms</li>
+    {% endfor %}
+</ul>
+<form method="post">
+    {% csrf_token %}
+    <button class="register-button" name="confirm"> Confirm</button>
+</form>
+
+{% endblock %}
