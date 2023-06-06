@@ -1,0 +1,1 @@
+![ProductiveApp](~/../hotel.png)
