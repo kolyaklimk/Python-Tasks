@@ -1,9 +1,9 @@
-## Assignment. 
+# Assignment. 
 To implement a site using Django web framework on individual assignment
 
 ![hotel](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/f20974f0-5744-4f59-a683-0d3723146e68)
 
-## Problem Statement:
+# Problem Statement:
 - Define the necessary entities to describe the domain. Implement them as models, using appropriate data types and object relations https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/Models. Present them as a diagram, as in the example below. The recommended database is sqlite, but you can use any other database in consultation with the instructor.
 - Implement one-to-one (OneToOneField), one-to-many (ForeignKey), and many-to-many (ManyToManyField) relationships.
 - Implement CRUD operations (create, read, update, delete) (https://metanit.com/python/django/5.4.php );
@@ -26,4 +26,49 @@ To implement a site using Django web framework on individual assignment
 - Validation of forms both on the server side and on the client side;
 - Support of different logging levels (take the logging level from the application configuration);
 - Restriction of using the project's API for unauthorized requests.
+
+# Images
+## User
+Sign In:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/491eb89e-2a66-462e-8dc4-7cb40e1734d1)
+
+Sign Up:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/5f4bd7f3-e75b-4a0f-8a9f-73b6a29e65b7)
+
+Auto size:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/35ac3b0f-1da8-4e0b-b960-7644863307bc)
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/7a6a7987-8d7c-4245-be13-8944245ef7ab)
+
+Sort by:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/3faeb51f-72e6-40ea-b500-b7ebc41ddcb7)
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/31f8e177-db03-4696-88c8-3316f78d0013)
+
+Book a room:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/30602e6f-28fd-4a81-bbac-1ce30eb16c98)
+
+Profile:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/e01f1fbf-e954-4251-a439-25006d30c40d)
+
+## SuperUser:
+Analyse:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/8fb99741-4162-4510-a047-f849f6795d70)
+
+Add new Card:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/6a21564c-664c-4463-b8e5-9dd4e41ad681)
+
+Delete Card:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/f5d5c692-152f-4c00-a628-18bd15d12736)
+
+Edit Card:
+
+![image](https://github.com/kolyaklimk/Python-Tasks/assets/93304825/07d976ee-36c3-4314-85bb-efa7fd712486)
 
