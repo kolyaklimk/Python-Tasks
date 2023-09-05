@@ -5,6 +5,8 @@ import django.test.client
 import pytest
 import django.test.utils
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.db import connection
 
 
 def test_1_():  # Get the home page
@@ -71,3 +73,17 @@ def test_110():  # Get the home page
     url = 'http://127.0.0.1:8000/auth/logout/'
     response = requests.get(url)
     assert response.status_code == 200
+
+
+# @pytest.fixture
+# def create_user():
+#     user = User.objects.create_user(username='testuser', password='testpassword')
+#     yield user
+#     user.delete()
+#
+#
+# @pytest.fixture
+# def db_connection():
+#     connection.connect()
+#     yield
+#     connection.close()
