@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'profile_user',
     'main',
     'news',
+    'about',
 ]
 
 AUTH_USER_MODEL = 'hotel.Client'

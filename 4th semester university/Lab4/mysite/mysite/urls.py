@@ -27,6 +27,7 @@ urlpatterns = [
     path('auth/', include('auth_user.urls', namespace='auth_user')),
     path('profile/', include('profile_user.urls', namespace='profile_user')),
     path('news/', include('news.urls', namespace='news')),
+    path('about/', include('about.urls', namespace='about')),
 ]
 
 if settings.DEBUG:
