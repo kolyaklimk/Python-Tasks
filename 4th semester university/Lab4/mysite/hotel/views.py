@@ -197,7 +197,3 @@ def analyse(request):
                                                         'total_bookings': total_bookings,
                                                         'most_popular_room': room,
                                                         'plot_data': plot_data})
-
-
-def go_home(request):
-    return redirect("hotel:hotel_list", 0)

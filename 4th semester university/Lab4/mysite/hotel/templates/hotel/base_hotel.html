@@ -37,7 +37,8 @@
 </head>
 <body>
 <div class="header">
-    <label class="logo" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">Hotel</label>
+    <label class="logo" onclick="window.location.href='{%url 'main:home' %}';">Hotel</label>
+    <label class="logo" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">Rent</label>
     {% if user.is_authenticated %}
 
     <div>

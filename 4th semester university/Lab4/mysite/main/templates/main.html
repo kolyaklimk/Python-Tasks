@@ -1,0 +1,24 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block content %}
+<br/>
+<img src="static/banner/mac.jpg" align="center" alt="Рекламный баннер"  style="width: 100%;">
+
+<h2>Последняя статья:</h2>
+<h3 align="center">{{ latest_article.title }}</h3>
+<p>{{ latest_article.content|slice:"200" }}
+    {% if latest_article.content|length > 200 %}...{% endif %}</p>
+<br/>
+
+<h2 align="center">Компании-партнеры:</h2>
+<ul style="list-style: none; padding: 0; display: flex; justify-content: space-between;">
+    <li><a href="https://alfabank.ru/"><img src="static/partners/alpha.png" alt="Логотип компании 1" width="100"></a>
+    </li>
+    <li><a href="https://www.amazon.com/"><img src="static/partners/amazon.png" alt="Логотип компании 2"
+                                               width="100"></a></li>
+    <li><a href="https://github.com/"><img src="static/partners/github.png" alt="Логотип компании 3" width="100"></a>
+    </li>
+    <li><a href="https://vk.com/"><img src="static/partners/vk.png" alt="Логотип компании 4" width="100"></a></li>
+</ul>
+
+{% endblock %}

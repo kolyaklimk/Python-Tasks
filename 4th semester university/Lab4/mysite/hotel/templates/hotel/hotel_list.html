@@ -106,6 +106,7 @@ text-align: center;
         var selectedOption = document.getElementById("categorySelector").value;
         window.location.href = selectedOption;
     }
+
     </script>
 
 </div>
@@ -137,10 +138,12 @@ text-align: center;
     <li>No rooms</li>
     {% endfor %}
 </ul>
-<div class="room-text"><br>
-    {{ timezone_context.calendar|safe }}<br>
-    <label>User Timezone: {{ timezone_context.user_timezone }} |</label>
-    <label>Current Date: {{ timezone_context.current_date|date:"d/m/Y" }} </label>
-</div>
+<header>
+    <div class="room-text"><br>
+        {{ timezone_context.calendar|safe }}<br>
+        <label>User Timezone: {{ timezone_context.user_timezone }} |</label>
+        <label>Current Date: {{ timezone_context.current_date|date:"d/m/Y" }} </label>
+    </div>
+</header>
 
 {% endblock %}
