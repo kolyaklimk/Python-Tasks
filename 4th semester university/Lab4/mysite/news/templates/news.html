@@ -1,0 +1,16 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block content %}
+
+<ul>
+    {% for news in news_list %}
+    <li>
+        <h3>{{ news.title }}</h3>
+        <img src="{{ news.image.url }}" alt="{{ news.title }}" width="100">
+        <p>{{ news.content|slice:"100" }}{% if news.content|length > 100 %}...{% endif %}</p>
+        <a href="{% url 'news:current_news' news.id %}">Читать далее</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
