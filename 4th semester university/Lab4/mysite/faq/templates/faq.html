@@ -1,0 +1,18 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block content %}
+
+<h1>Часто задаваемые вопросы</h1>
+<ul>
+   {% for faq_item in faq_items %}
+       <li>
+           <details>
+               <summary>{{ faq_item.question }} - {{ faq_item.date_added }}</summary>
+               <p>{{ faq_item.answer }}</p>
+           </details>
+       </li>
+   {% endfor %}
+</ul>
+
+
+{% endblock %}

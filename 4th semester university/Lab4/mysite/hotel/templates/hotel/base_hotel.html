@@ -33,14 +33,22 @@
 {% block header %}
 {% endblock %}
 
+
+
     </style>
 </head>
 <body>
 <div class="header">
     <label class="logo" onclick="window.location.href='{%url 'main:home' %}';">Hotel</label>
-    <label class="logo" onclick="window.location.href='{%url 'news:home' %}';">News</label>
     <label class="logo" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">Rent</label>
-    <label class="logo" onclick="window.location.href='{%url 'about:home' %}';">About</label>
+    <div class="dropdown">
+        <select onchange="window.location.href=this.value;">
+            <option value="" selected disabled>Menu</option>
+            <option value="{%url 'news:home' %}">News</option>
+            <option value="{%url 'faq:home' %}">Faq</option>
+            <option value="{%url 'about:home' %}">About</option>
+        </select>
+    </div>
     {% if user.is_authenticated %}
 
     <div>
