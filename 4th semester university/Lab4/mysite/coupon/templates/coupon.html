@@ -1,0 +1,25 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block content %}
+
+<h1>Активные промокоды и купоны</h1>
+<ul>
+    {% for coupon in coupons_true %}
+        <li>
+            <h2>{{ coupon.code }}</h2>
+            <p>{{ coupon.description }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+<h1>Архив</h1>
+<ul>
+    {% for coupon in coupons_false %}
+        <li>
+            <h2>{{ coupon.code }}</h2>
+            <p>{{ coupon.description }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

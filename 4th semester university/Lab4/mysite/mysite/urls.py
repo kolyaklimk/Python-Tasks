@@ -29,6 +29,9 @@ urlpatterns = [
     path('news/', include('news.urls', namespace='news')),
     path('about/', include('about.urls', namespace='about')),
     path('faq/', include('faq.urls', namespace='faq')),
+    path('employee/', include('employee.urls', namespace='employee')),
+    path('vacancy/', include('vacancy.urls', namespace='vacancy')),
+    path('coupon/', include('coupon.urls', namespace='coupon')),
 ]
 
 if settings.DEBUG:

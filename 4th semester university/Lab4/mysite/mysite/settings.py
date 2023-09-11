@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'news',
     'about',
     'faq',
+    'employee',
+    'vacancy',
+    'coupon',
 ]
 
 AUTH_USER_MODEL = 'hotel.Client'

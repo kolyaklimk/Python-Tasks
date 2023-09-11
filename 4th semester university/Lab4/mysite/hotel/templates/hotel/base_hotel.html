@@ -3,68 +3,75 @@
 <head>
     <title>Hotel</title>
     <style>
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fd0003;
-      padding: 10px;
-    }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #fd0003;
+          padding: 10px;
+        }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #003f7d;
-    }
+        .logo {
+          font-size: 24px;
+          font-weight: bold;
+          cursor: pointer;
+          color: #003f7d;
+        }
 
-    .register-button {
-      background-color: #003f7d;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-    }
+        .register-button {
+          background-color: #003f7d;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          cursor: pointer;
+        }
 
-{% block header %}
-{% endblock %}
-
+    {% block header %}
+    {% endblock %}
 
 
     </style>
 </head>
+<header>
+    <div class="header">
+        <label class="logo" onclick="window.location.href='{%url 'main:home' %}';">Hotel</label>
+        <label class="logo" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">Rent</label>
+        <div class="dropdown">
+            <select onchange="window.location.href=this.value;">
+                <option value="" selected disabled>Menu</option>
+                <option value="{%url 'news:home' %}">News</option>
+                <option value="{%url 'faq:home' %}">Faq</option>
+                <option value="{%url 'employee:home' %}">Contacts</option>
+                <option value="{%url 'coupon:home' %}">Coupons</option>
+                <option value="{%url 'about:home' %}">About</option>
+            </select>
+        </div>
+
+        {% if user.is_authenticated %}
+
+        <div>
+            <label class="logo">{{user.username}}</label>
+            <div class="register-button" onclick="location.href='{%url 'auth_user:logout' %}'">Sign Out</div>
+        </div>
+        {% else %}
+        <div>
+            <div class="register-button" onclick="location.href='{%url 'auth_user:register' %}'">Sigh Up</div>
+            <div class="register-button" onclick="location.href='{%url 'auth_user:login' %}'">Sign In</div>
+        </div>
+        {% endif %}
+    </div>
+</header>
+
 <body>
-<div class="header">
-    <label class="logo" onclick="window.location.href='{%url 'main:home' %}';">Hotel</label>
-    <label class="logo" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">Rent</label>
-    <div class="dropdown">
-        <select onchange="window.location.href=this.value;">
-            <option value="" selected disabled>Menu</option>
-            <option value="{%url 'news:home' %}">News</option>
-            <option value="{%url 'faq:home' %}">Faq</option>
-            <option value="{%url 'about:home' %}">About</option>
-        </select>
-    </div>
-    {% if user.is_authenticated %}
-
-    <div>
-        <label class="logo">{{user.username}}</label>
-        <div class="register-button" onclick="location.href='{%url 'auth_user:logout' %}'">Sign Out</div>
-    </div>
-    {% else %}
-    <div>
-        <div class="register-button" onclick="location.href='{%url 'auth_user:register' %}'">Sigh Up</div>
-        <div class="register-button" onclick="location.href='{%url 'auth_user:login' %}'">Sign In</div>
-    </div>
-    {% endif %}
-</div>
-
 {% block content %}
 {% endblock %}
-
 </body>
+<footer>
+    <a href="/static/policy/policy.pdf" download>Политики конфиденциальности</a>
+    <label class="logo" onclick="window.location.href='{%url 'vacancy:home' %}';">Vacancy</label>
+</footer>
 </html>

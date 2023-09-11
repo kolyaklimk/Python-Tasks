@@ -1,0 +1,17 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block content %}
+
+<h1>Список вакансий</h1>
+<ul>
+    {% for vacancy in vacancies %}
+        <li>
+            <h2>{{ vacancy.title }}</h2>
+            <p>{{ vacancy.description }}</p>
+            <p>Требования: {{ vacancy.requirements }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
