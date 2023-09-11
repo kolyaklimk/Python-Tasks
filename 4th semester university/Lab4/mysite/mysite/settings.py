@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'employee',
     'vacancy',
     'coupon',
+    'review',
 ]
 
 AUTH_USER_MODEL = 'hotel.Client'

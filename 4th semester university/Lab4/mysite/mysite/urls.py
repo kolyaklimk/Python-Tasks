@@ -32,6 +32,7 @@ urlpatterns = [
     path('employee/', include('employee.urls', namespace='employee')),
     path('vacancy/', include('vacancy.urls', namespace='vacancy')),
     path('coupon/', include('coupon.urls', namespace='coupon')),
+    path('review/', include('review.urls', namespace='review')),
 ]
 
 if settings.DEBUG:

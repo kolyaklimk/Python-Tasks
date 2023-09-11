@@ -52,4 +52,13 @@ list-style-type: none;
     <button class="register-button" name="confirm"> Confirm</button>
 </form>
 
+<form method="post">
+    {% csrf_token %}
+    <details>
+        <summary>Оставить отзыв</summary>
+        <input type="range" name="range" min="1" max="5"><br/>
+        <textarea name="text"></textarea><br/>
+        <button type="submit" name="review">Оставить отзыв</button>
+    </details>
+</form>
 {% endblock %}

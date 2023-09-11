@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from hotel.models import Room, Booking
+from review.models import Review
 
 
 # Create your views here.
@@ -16,6 +17,15 @@ def get_book(request):
         for i in Booking.objects.filter(client_id=request.user, status='cart'):
             i.status = 'paid'
             i.save()
+
+    if request.method == 'POST' and 'review' in request.POST:
+        rating = request.POST.get('range')
+        text = request.POST.get('text')
+        Review.objects.create(
+            author=request.user,
+            rating=rating,
+            text=text,
+        )
 
     all_booking = Booking.objects.filter(client_id=request.user, status='cart')
     return render(request, 'profile_user/profile.html', {'all_booking': all_booking})

@@ -1,0 +1,24 @@
+{% extends 'hotel/base_hotel.html' %}
+
+{% block content %}
+
+<h1>Отзывы</h1>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <p>Автор: {{ review.author }}</p>
+            <p>Оценка: {{ review.rating }}</p>
+            <p>{{ review.text }}</p>
+            <p>Дата: {{ review.date }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+<label onclick="window.location.href='{%url 'profile_user:profile' %}';">Добавить отзыв</label>
+{% else %}
+<label onclick="window.location.href='{%url 'auth_user:register' %}';">Добавить отзыв</label>
+{% endif %}
+
+
+{% endblock %}
