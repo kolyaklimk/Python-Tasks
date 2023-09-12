@@ -2,24 +2,28 @@
 
 {% block content %}
 
-<h1>Активные промокоды и купоны</h1>
-<ul>
-    {% for coupon in coupons_true %}
-        <li>
-            <h2>{{ coupon.code }}</h2>
-            <p>{{ coupon.description }}</p>
-        </li>
-    {% endfor %}
-</ul>
+<h1>Промокоды и купоны</h1>
 
-<h1>Архив</h1>
-<ul>
-    {% for coupon in coupons_false %}
-        <li>
-            <h2>{{ coupon.code }}</h2>
-            <p>{{ coupon.description }}</p>
-        </li>
+<table border="10px">
+    <tr>
+        <th>Код</th>
+        <th>Описание</th>
+        <th>Действует</th>
+    </tr>
+    {% for coupon in coupons_true %}
+    <tr>
+        <td>{{ coupon.code }}</td>
+        <td>{{ coupon.description }}</td>
+        <td>Да</td>
+    </tr>
     {% endfor %}
-</ul>
+    {% for coupon in coupons_false %}
+    <tr>
+        <td>{{ coupon.code }}</td>
+        <td>{{ coupon.description }}</td>
+        <td>Нет</td>
+    </tr>
+    {% endfor %}
+</table>
 
 {% endblock %}
