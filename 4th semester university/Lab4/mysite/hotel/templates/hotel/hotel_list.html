@@ -2,21 +2,6 @@
 
 {% block header %}
 
-.profile-button {
-float: right;
-margin-top: 10px;
-margin-right: 10px;
-background-color: #003f7d;
-color: white;
-border: none;
-padding: 10px 20px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-cursor: pointer;
-}
-
 .room-list {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -45,51 +30,43 @@ line-height: 1.2;
 margin-bottom: 5px;
 }
 
-.footer {
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-background-color: #f9f9f9;
-padding: 10px;
-text-align: center;
-}
-
 {% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated and not user.is_superuser %}
-<div>
-    <button class="profile-button"
+<div style="float: right;">
+    <button class="button1"
             onclick="window.location.href = '{% url 'profile_user:profile' %}'">Profile
     </button>
 </div>
 {% endif %}
 
 {% if user.is_superuser %}
-<button class="profile-button"
-        onclick="window.location.href = '{% url 'hotel:hotel_analyse' %}'">Analyse
-</button>
-<button class="profile-button"
-        onclick="window.location.href = '{% url 'hotel:room_create' %}'">Add
-</button>
+<div style="float: right;">
+    <button class="button1"
+            onclick="window.location.href = '{% url 'hotel:hotel_analyse' %}'">Analyse
+    </button>
+    <button class="button1"
+            onclick="window.location.href = '{% url 'hotel:room_create' %}'">Add
+    </button>
+</div>
 {%endif%}
 
 <div class="sort-buttons">
     {% if is_sort_by_price %}
-    <button class="register-button" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort
+    <button class="button1" onclick="window.location.href = '{% url 'hotel:hotel_list' choose_category%}'">Sort
         by
         Price
     </button>
     {% else %}
-    <button class="register-button"
+    <button class="button1"
             onclick="window.location.href = '{% url 'hotel:hotel_list_sort_by_price' choose_category%}'">
         Sort by Price
     </button>
     {% endif %}
 
-    <select class="register-button" id="categorySelector" onchange="redirectToSelectedCategory()"
+    <select class="button1" id="categorySelector" onchange="redirectToSelectedCategory()"
             onselect=choose_category>
         <option value="{% url 'hotel:hotel_list' 0 %}">All</option>
         {% for category in categories %}
@@ -107,6 +84,8 @@ text-align: center;
         window.location.href = selectedOption;
     }
 
+
+
     </script>
 
 </div>
@@ -119,8 +98,8 @@ text-align: center;
 
     <li class="room-item" onclick="window.location.href='{% url 'hotel:room_id' m.id %}'">
         {% load static %}
-        <img src="{% static m.photo %}"
-             alt="My image" class="room-image">
+        <img src="/{{ m.photo }}"
+             alt="image" class="room-image">
         <div class="room-text">{{ m }}</div>
         <div class="room-text">Capacity: {{ m.capacity }}</div>
         <div class="room-text">Price: {{ m.price }}</div>
@@ -128,7 +107,7 @@ text-align: center;
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="room_id" value="{{ m.id }}">
-            <button name="delete_room" class="register-button">
+            <button name="delete_room" class="button1">
                 Delete
             </button>
         </form>

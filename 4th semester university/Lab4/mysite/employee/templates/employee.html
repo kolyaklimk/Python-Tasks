@@ -1,17 +1,22 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Наши сотрудники">
+<meta name="keywords" content="сотрудники, персонал, команда">
+{% endblock %}
+
 {% block content %}
 
 <h1>Наши сотрудники</h1>
-<ul >
+<ul>
     {% for employee in employees %}
-        <li >
-            <img src="{{ employee.photo.url }}" alt="{{ employee.name }}" width="100">
-            <h2>{{ employee.name }}</h2>
-            <p>Должность: {{ employee.position }}</p>
-            <p>Email: {{ employee.email }}</p>
-            <p>Телефон: {{ employee.phone }}</p>
-        </li>
+    <li>
+        <img src="{{ employee.photo.url }}" alt="{{ employee.name }}" width="100">
+        <h2>{{ employee.name }}</h2>
+        <p>Должность: {{ employee.position }}</p>
+        <p>Email: {{ employee.email }}</p>
+        <p>Телефон: {{ employee.phone }}</p>
+    </li>
     {% endfor %}
 </ul>
 

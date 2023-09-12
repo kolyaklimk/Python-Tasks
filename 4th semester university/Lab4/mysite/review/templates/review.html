@@ -1,16 +1,23 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Отзывы о нашей компании">
+<meta name="keywords" content="отзывы, обратная связь, рейтинг, оценки">
+{% endblock %}
+
 {% block content %}
 
 <h1>Отзывы</h1>
 <ul>
     {% for review in reviews %}
-        <li>
-            <p>Автор: {{ review.author }}</p>
-            <p>Оценка: {{ review.rating }}</p>
-            <p>{{ review.text }}</p>
-            <p>Дата: {{ review.date }}</p>
-        </li>
+    <li itemscope itemtype="http://schema.org/Review">
+        <p itemprop="author">Автор: {{ review.author }}</p>
+        <p itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+            Оценка: <span itemprop="ratingValue">{{ review.rating }}</span>
+        </p>
+        <p itemprop="reviewBody">{{ review.text }}</p>
+        <p itemprop="datePublished">Дата: {{ review.date }}</p>
+    </li>
     {% endfor %}
 </ul>
 

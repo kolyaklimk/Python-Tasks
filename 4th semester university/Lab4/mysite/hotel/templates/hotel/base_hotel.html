@@ -1,65 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Klimkovich Nikolay">
+    {% block head %} {% endblock %}
     <title>Hotel</title>
-    <style>
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: #fd0003;
-          padding: 10px;
-          spacing: 10px;
-        }
-
-        .footer {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #003f7d;
-          padding: 10px;
-          spacing: 10px;
-        }
-
-        .text1 {
-          font-size: 26px;
-          font-weight: bold;
-          cursor: pointer;
-          color: #003f7d;
-        }
-
-        .text2 {
-          font-size: 22px;
-          font-weight: normal;
-          cursor: pointer;
-          color: #003f7d;
-        }
-
-        .text3 {
-          font-size: 22px;
-          font-weight: normal;
-          cursor: pointer;
-          color: white;
-        }
-
-        .button1 {
-          background-color: #003f7d;
-          color: white;
-          border: none;
-          padding: 10px 10px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          cursor: pointer;
-          border-radius: 10px;
-        }
-
-    {% block header %}
-    {% endblock %}
-
-
-    </style>
+    <link rel="icon" href="/static/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/static/css/my1.css">
+    <style> {% block header %} {% endblock %} </style>
 </head>
 <body>
 <header>
@@ -67,7 +16,7 @@
         <div>
             <label class="text1" onclick="window.location.href='{%url 'main:home' %}';">HOTEL</label>
             <label style="margin: 0px 10px 0px 10px" class="text2"
-                   onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">RENT</label>
+                   onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">ROOMS</label>
             <label style="margin: 0px 10px 0px 0px" class="text2"
                    onclick="window.location.href='{%url 'review:home' %}';">REVIEW</label>
             <select class="button1" onchange="window.location.href=this.value;">

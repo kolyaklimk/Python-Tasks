@@ -1,5 +1,10 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Главная. Последняя статья и информация о компаниях-партнерах">
+<meta name="keywords" content="статья, последняя статья, компании-партнеры, партнерство">
+{% endblock %}
+
 {% block content %}
 
 <aside style="float: right;">
@@ -7,26 +12,37 @@
         <img src="static/banner/mac.jpg" align="center" alt="Рекламный баннер" width="200">
     </a>
 </aside>
-<section>
-    <h2>Последняя статья:</h2>
-    <h3>{{ latest_article.title }}</h3>
-    <p>{{ latest_article.content|slice:"200" }}
+
+<section itemscope itemtype="http://schema.org/Article">
+    <h2 itemprop="name">Последняя статья:</h2>
+    <h3 itemprop="headline">{{ latest_article.title }}</h3>
+    <p itemprop="description">{{ latest_article.content|slice:"200" }}
         {% if latest_article.content|length > 200 %}...{% endif %}</p>
     <br/>
 </section>
-<article>
+
+<article itemscope itemtype="http://schema.org/Organization">
     <h2>Компании-партнеры:</h2>
     <ul style="list-style: none; padding: 0; display: flex;">
-        <li><a href="https://alfabank.ru/">
-            <img src="static/partners/alpha.png" alt="Логотип 1" width="100"></a>
+        <li itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
+            <a href="https://alfabank.ru/">
+                <img src="static/partners/alpha.png" alt="Логотип 1" width="100">
+            </a>
         </li>
-        <li><a href="https://www.amazon.com/">
-            <img src="static/partners/amazon.png" alt="Логотип 2" width="100"></a></li>
-        <li><a href="https://github.com/">
-            <img src="static/partners/github.png" alt="Логотип 3" width="100"></a>
+        <li itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
+            <a href="https://www.amazon.com/">
+                <img src="static/partners/amazon.png" alt="Логотип 2" width="100">
+            </a>
         </li>
-        <li><a href="https://vk.com/">
-            <img src="static/partners/vk.png" alt="Логотип 4" width="100"></a>
+        <li itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
+            <a href="https://github.com/">
+                <img src="static/partners/github.png" alt="Логотип 3" width="100">
+            </a>
+        </li>
+        <li itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
+            <a href="https://vk.com/">
+                <img src="static/partners/vk.png" alt="Логотип 4" width="100">
+            </a>
         </li>
     </ul>
 </article>

@@ -21,7 +21,7 @@ text-align: center
 
 {% block content %}
 {% load static %}
-<img src="{% static form.photo %}"
+<img src="/{{ form.photo }}"
      alt="My image" class="room-image">
 <div class="room-text">
     <div>{{ form }}</div>
@@ -45,7 +45,7 @@ text-align: center
             <input type="date" name="check_out_date" required><br>
 
             <label>Has_child:</label>
-            <input type="checkbox" name="has_child"><br>
+            <input type="checkbox" name="has_child" ><br>
 
             <button class="register-button" name="book_room">Book a room</button>
         </div>
@@ -54,7 +54,7 @@ text-align: center
 {%endif%}
 
 {% if user.is_superuser %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div style="text-align: center;">
         <label>Price:</label>
@@ -64,7 +64,7 @@ text-align: center
         <input type="number" min="0" name="capacity" required><br>
 
         <label>Photo:</label>
-        <input name="photo" required placeholder="1.jpg"><br>
+        <input type="file" name="photo" required><br>
 
         <label>Category:</label>
         <select class="register-button" name="select">

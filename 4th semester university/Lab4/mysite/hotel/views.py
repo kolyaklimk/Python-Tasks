@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from django.shortcuts import render, redirect
 from .models import Room, Category, Booking
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
@@ -8,10 +7,11 @@ from django.utils import timezone
 import calendar
 import requests
 import matplotlib.pyplot as plt
-import numpy as np
-from django.shortcuts import render
 import io
 import base64
+from django.shortcuts import render, redirect
+from django.conf import settings
+import os
 
 
 def timezone_context(request):
@@ -133,7 +133,12 @@ def room_detail(request, room_id):
         price = request.POST['price']
         capacity = request.POST['capacity']
         select = request.POST['select']
-        photo = request.POST['photo']
+        photo = request.FILES['photo']
+
+        file_path = os.path.join(settings.MEDIA_ROOT, 'rooms')
+        with open(file_path, 'wb') as destination:
+            for chunk in photo.chunks():
+                destination.write(chunk)
 
         category = get_object_or_404(Category, id=select)
         form.category = category
@@ -156,7 +161,12 @@ def create_room(request):
         price = request.POST['price']
         capacity = request.POST['capacity']
         select = request.POST['select']
-        photo = request.POST['photo']
+        photo = request.FILES['photo']
+
+        file_path = os.path.join(settings.MEDIA_ROOT, 'rooms')
+        with open(file_path, 'wb') as destination:
+            for chunk in photo.chunks():
+                destination.write(chunk)
 
         category = get_object_or_404(Category, id=select)
 
@@ -175,25 +185,34 @@ def analyse(request):
     if not request.user.is_authenticated:
         return redirect("hotel:hotel_list", 0)
 
-    bookings = Booking.objects.all()
-    list_total_cost = [booking.calculate_total_cost() for booking in bookings]
-    sum_cost = sum(list_total_cost)
-    average_bill = sum_cost / len(list_total_cost)
+    try:
+        bookings = Booking.objects.all()
+        list_total_cost = [booking.calculate_total_cost() for booking in bookings]
+        sum_cost = sum(list_total_cost)
 
-    popular_rooms = Booking.objects.values('room').annotate(total_bookings=Count('room')). \
-        order_by('-total_bookings').first()
-    total_bookings = popular_rooms['total_bookings']
-    room = Room.objects.get(id=popular_rooms['room'])
+        average_bill = sum_cost / len(list_total_cost)
 
-    plt.plot(list_total_cost)
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-    plot_data = base64.b64encode(buf.read()).decode('ascii')
+        popular_rooms = Booking.objects.values('room').annotate(total_bookings=Count('room')). \
+            order_by('-total_bookings').first()
+        total_bookings = popular_rooms['total_bookings']
+        room = Room.objects.get(id=popular_rooms['room'])
 
-    return render(request, 'hotel/hotel_analyse.html', {'bookings': bookings,
-                                                        'total_earnings': sum_cost,
-                                                        'average_bill': average_bill,
-                                                        'total_bookings': total_bookings,
-                                                        'most_popular_room': room,
-                                                        'plot_data': plot_data})
+        plt.plot(list_total_cost)
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+        plot_data = base64.b64encode(buf.read()).decode('ascii')
+
+        return render(request, 'hotel/hotel_analyse.html', {'bookings': bookings,
+                                                            'total_earnings': sum_cost,
+                                                            'average_bill': average_bill,
+                                                            'total_bookings': total_bookings,
+                                                            'most_popular_room': room,
+                                                            'plot_data': plot_data})
+    except:
+        return render(request, 'hotel/hotel_analyse.html', {'bookings': None,
+                                                            'total_earnings': None,
+                                                            'average_bill': None,
+                                                            'total_bookings': None,
+                                                            'most_popular_room': None,
+                                                            'plot_data': None})

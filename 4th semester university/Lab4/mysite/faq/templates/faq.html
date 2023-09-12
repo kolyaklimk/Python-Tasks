@@ -1,18 +1,24 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Часто задаваемые вопросы и ответы">
+<meta name="keywords" content="вопросы, ответы, FAQ, информация">
+{% endblock %}
+
 {% block content %}
 
-<h1>Часто задаваемые вопросы</h1>
-<ul>
-   {% for faq_item in faq_items %}
-       <li>
-           <details>
-               <summary>{{ faq_item.question }} - {{ faq_item.date_added }}</summary>
-               <p>{{ faq_item.answer }}</p>
-           </details>
-       </li>
-   {% endfor %}
+<h1 itemprop="headline">Часто задаваемые вопросы</h1>
+<ul itemprop="mainEntity" itemscope itemtype="http://schema.org/FAQPage">
+    {% for faq_item in faq_items %}
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question">
+        <details>
+            <summary itemprop="name">{{ faq_item.question }} - {{ faq_item.date_added }}</summary>
+            <div itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer">
+                <p itemprop="text">{{ faq_item.answer }}</p>
+            </div>
+        </details>
+    </li>
+    {% endfor %}
 </ul>
-
 
 {% endblock %}

@@ -1,15 +1,20 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Список вакансий">
+<meta name="keywords" content="вакансии, работа, трудоустройство">
+{% endblock %}
+
 {% block content %}
 
 <h1>Список вакансий</h1>
 <ul>
     {% for vacancy in vacancies %}
-        <li>
-            <h2>{{ vacancy.title }}</h2>
-            <p>{{ vacancy.description }}</p>
-            <p>Требования: {{ vacancy.requirements }}</p>
-        </li>
+    <li itemscope itemtype="http://schema.org/JobPosting">
+        <h2 itemprop="title">{{ vacancy.title }}</h2>
+        <p itemprop="description">{{ vacancy.description }}</p>
+        <p>Требования: <span itemprop="qualifications">{{ vacancy.requirements }}</span></p>
+    </li>
     {% endfor %}
 </ul>
 

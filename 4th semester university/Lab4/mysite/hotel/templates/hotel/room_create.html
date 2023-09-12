@@ -11,7 +11,7 @@ text-align: center
 
 {% block content %}
 {% if user.is_superuser %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div style="text-align: center;" class="room-text">
         <label >Price:</label>
@@ -21,7 +21,7 @@ text-align: center
         <input type="number" min="0" name="capacity" required><br>
 
         <label>Photo:</label>
-        <input name="photo" required placeholder="1.jpg"><br>
+        <input type="file" name="photo" required><br>
 
         <label >Category:</label>
         <select class="register-button" name="select">

@@ -1,5 +1,10 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Страница с промокодами и купонами">
+<meta name="keywords" content="промокоды, купоны, акции, скидки">
+{% endblock %}
+
 {% block content %}
 
 <h1>Промокоды и купоны</h1>
@@ -8,19 +13,20 @@
     <tr>
         <th>Код</th>
         <th>Описание</th>
+        <th></th>
         <th>Действует</th>
     </tr>
     {% for coupon in coupons_true %}
     <tr>
         <td>{{ coupon.code }}</td>
-        <td>{{ coupon.description }}</td>
+        <td colspan="2">{{ coupon.description }}</td>
         <td>Да</td>
     </tr>
     {% endfor %}
     {% for coupon in coupons_false %}
     <tr>
         <td>{{ coupon.code }}</td>
-        <td>{{ coupon.description }}</td>
+        <td colspan="2">{{ coupon.description }}</td>
         <td>Нет</td>
     </tr>
     {% endfor %}

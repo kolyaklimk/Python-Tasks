@@ -1,14 +1,19 @@
 {% extends 'hotel/base_hotel.html' %}
 
+{% block head %}
+<meta name="description" content="Последние новости и статьи">
+<meta name="keywords" content="новости, статьи, информация">
+{% endblock %}
+
 {% block content %}
 
 <ul>
     {% for news in news_list %}
-    <li>
-        <h3>{{ news.title }}</h3>
-        <img src="{{ news.image.url }}" alt="{{ news.title }}" width="100">
-        <p>{{ news.content|slice:"100" }}{% if news.content|length > 100 %}...{% endif %}</p>
-        <a href="{% url 'news:current_news' news.id %}">Читать далее</a>
+    <li itemscope itemtype="http://schema.org/NewsArticle">
+        <h3 itemprop="headline">{{ news.title }}</h3>
+        <img itemprop="image" src="{{ news.image.url }}" alt="{{ news.title }}" width="100" style="float: left;">
+        <p itemprop="description">{{ news.content|slice:"100" }}{% if news.content|length > 100 %}...{% endif %}</p>
+        <a itemprop="url" href="{% url 'news:current_news' news.id %}">Читать далее</a>
     </li>
     {% endfor %}
 </ul>
