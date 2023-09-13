@@ -50,4 +50,30 @@ text-align: center;
     <li>No booking</li>
     {% endfor %}
 </ul>
+
+<table border="2" style="width:100%;">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Has child</th>
+        <th>Check-In</th>
+        <th>Check-Out</th>
+        <th>Status</th>
+        <th>Total cost</th>
+    </tr>
+    {% for booking in bookings %}
+    <tr>
+        <td>{{ booking.client }}</td>
+        <td> {{ booking.client.phone_number }}</td>
+        <td> {{ booking.has_child }}</td>
+        <td> {{ booking.check_in_date }}</td>
+        <td> {{ booking.check_out_date }}</td>
+        <td>{{ booking.status }}</td>
+        <br>
+        <td> {{ booking.calculate_total_cost }}</td>
+    </tr>
+    {% empty %}
+    <li>No booking</li>
+    {% endfor %}
+</table>
 {% endblock %}
