@@ -43,5 +43,5 @@ summary {
 
 /* Стилизация развернутого ответа */
 details[open] {
-    background-color: #f2f2f2;
+    background-color: yellow;
 }

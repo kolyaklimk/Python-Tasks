@@ -3,6 +3,7 @@
 {% block head %}
 <meta name="description" content="Последние новости и статьи">
 <meta name="keywords" content="новости, статьи, информация">
+<link rel="stylesheet" href="/static/css/news.css">
 {% endblock %}
 
 {% block content %}
@@ -12,7 +13,7 @@
     <li itemscope itemtype="http://schema.org/NewsArticle">
         <h3 itemprop="headline">{{ news.title }}</h3>
         <img itemprop="image" src="{{ news.image.url }}" alt="{{ news.title }}" width="100" style="float: left;">
-        <p itemprop="description">{{ news.content|slice:"100" }}{% if news.content|length > 100 %}...{% endif %}</p>
+        <p itemprop="description">{{ news.content }}</p>
         <a itemprop="url" href="{% url 'news:current_news' news.id %}">Читать далее</a>
     </li>
     {% endfor %}

@@ -1,0 +1,36 @@
+/* Стилизация контейнера для новостей */
+ul {
+    list-style-type: none;
+}
+
+    /* Стилизация каждой новостной статьи */
+    ul li {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+        /* Стилизация заголовка новостной статьи */
+        ul li h3 {
+            font-size: 24px;
+        }
+
+        /* Стилизация изображения */
+        ul li img {
+            float: left;
+            margin-right: 10px;
+        }
+
+        /* Стилизация краткой информации с управлением переполнением и многоточием */
+        ul li p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Стилизация кнопки "Читать далее" */
+        ul li a {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+        }
