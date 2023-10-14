@@ -1,0 +1,48 @@
+/* Стилизация заголовка страницы */
+h1 {
+    font-size: 44px;
+    margin: 20px 0;
+    text-align: center;
+}
+/* Контейнер для сотрудников */
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Стилизация каждого сотрудника */
+li {
+    width: 300px;
+    margin: 10px;
+    padding: 15px;
+    border: 10px solid #ccc;
+    border-radius: 10%;
+}
+
+/* Стилизация фотографии сотрудника */
+li img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Стилизация заголовка с именем сотрудника */
+li h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+/* Стилизация должности сотрудника */
+li p:nth-child(3) {
+    font-style: italic;
+}
+
+/* Стилизация email и телефона */
+li p:nth-child(4), li p:nth-child(5) {
+    color: #0077b6;
+}

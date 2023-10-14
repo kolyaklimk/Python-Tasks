@@ -1,0 +1,47 @@
+/* Стилизация заголовка */
+h1 {
+    font-size: 24px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Стилизация контейнера для FAQ */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стилизация каждого вопроса */
+li {
+    margin: 10px 0;
+}
+
+/* Стилизация элемента <details> */
+details {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Стилизация элемента <summary> (заголовка вопроса) */
+summary {
+    font-weight: bold;
+}
+
+/* Стилизация вопроса */
+.question {
+    color: #0077b6;
+}
+
+/* Стилизация даты */
+.date {
+    color: #e76f51;
+}
+
+/* Стилизация развернутого ответа */
+details[open] {
+    background-color: #f2f2f2;
+}

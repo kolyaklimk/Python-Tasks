@@ -3,6 +3,7 @@
 {% block head %}
 <meta name="description" content="Часто задаваемые вопросы и ответы">
 <meta name="keywords" content="вопросы, ответы, FAQ, информация">
+<link rel="stylesheet" href="/static/css/faq.css">
 {% endblock %}
 
 {% block content %}
@@ -12,7 +13,7 @@
     {% for faq_item in faq_items %}
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question">
         <details>
-            <summary itemprop="name">{{ faq_item.question }} - {{ faq_item.date_added }}</summary>
+            <summary itemprop="name"><span class=".question">{{ faq_item.question }}</span> - <span class="date">{{ faq_item.date_added }}</span></summary>
             <div itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer">
                 <p itemprop="text">{{ faq_item.answer }}</p>
             </div>

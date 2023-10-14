@@ -1,0 +1,44 @@
+/* Стилизация заголовка страницы */
+h1 {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+/* Стилизация каждой вакансии */
+li {
+    float: left;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    list-style-type: none;
+}
+
+/* Стилизация заголовка вакансии (h2) */
+li h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Стилизация описания вакансии (p) */
+li p[itemprop="description"] {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Стилизация требований (p) */
+li p span[itemprop="qualifications"] {
+    font-weight: bold;
+}
+
+/* Стилизация ссылок в требованиях */
+li p span[itemprop="qualifications"] a {
+    text-decoration: underline;
+}
+
+/* Очистка float для предотвращения смешивания элементов */
+ul:after {
+    content: "";
+    display: table;
+    clear: both;
+}
