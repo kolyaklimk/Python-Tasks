@@ -12,7 +12,7 @@
     {% for news in news_list %}
     <li itemscope itemtype="http://schema.org/NewsArticle">
         <h3 itemprop="headline">{{ news.title }}</h3>
-        <img itemprop="image" src="{{ news.image.url }}" alt="{{ news.title }}" width="100" style="float: left;">
+        <img itemprop="image" src="{{ news.image.url }}" alt="{{ news.title }}" width="100">
         <p itemprop="description">{{ news.content }}</p>
         <a itemprop="url" href="{% url 'news:current_news' news.id %}">Читать далее</a>
     </li>

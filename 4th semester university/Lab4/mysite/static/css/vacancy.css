@@ -6,14 +6,14 @@ h1 {
 }
 
 /* Контейнер для сотрудников */
-ul {
+/*ul {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
+}*/
 
 /* Стилизация каждой вакансии */
 li {
