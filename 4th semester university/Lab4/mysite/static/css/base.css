@@ -2,8 +2,19 @@ body {
     font-family: TTCommonsProVar, sans-serif;
     font-size: 1.25rem;
     background: rgb(255, 248, 225);
-    color: rgb(31, 28, 21);
     line-height: 1.4;
+    height: 100vh;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-width: 750px;
+}
+
+main {
+    flex: 1 1 auto;
 }
 
 .whiteImage {

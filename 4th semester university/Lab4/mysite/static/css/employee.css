@@ -1,9 +1,9 @@
 /* Стилизация заголовка страницы */
 h1 {
-    font-size: 44px;
-    margin: 20px 0;
-    text-align: center;
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    margin-bottom: 1rem;
 }
+
 /* Контейнер для сотрудников */
 ul {
     list-style-type: none;
@@ -16,7 +16,7 @@ ul {
 
 /* Стилизация каждого сотрудника */
 li {
-    width: 300px;
+    width: 100px;
     margin: 10px;
     padding: 15px;
     border: 10px solid #ccc;

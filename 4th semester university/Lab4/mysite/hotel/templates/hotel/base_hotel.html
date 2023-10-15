@@ -7,7 +7,7 @@
     <title>Hotel</title>
     <link rel="icon" href="/static/logo/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/base.css">
-
+    <link rel="stylesheet" href="/static/css/footer-header.css">
     {% block head %} {% endblock %}
 </head>
 <body>
@@ -18,62 +18,55 @@
     });
 </script>
 
-<main>
-    <div class="box-items-1">
-        <div class="whiteImage"></div>
-        <div class="blackYellowImage"></div>
-    </div>
-    <header>
-        <div class="header">
-            <div>
-                <label class="text1" onclick="window.location.href='{%url 'main:home' %}';">HOTEL</label>
-                <label style="margin: 0px 10px 0px 10px" class="text2"
-                       onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">ROOMS</label>
-                <label style="margin: 0px 10px 0px 0px" class="text2"
-                       onclick="window.location.href='{%url 'review:home' %}';">REVIEW</label>
-                <select class="button1" onchange="window.location.href=this.value;">
-                    <option value="" selected disabled>MENU</option>
-                    <option value="{%url 'news:home' %}">NEWS</option>
-                    <option value="{%url 'faq:home' %}">FAQ</option>
-                    <option value="{%url 'employee:home' %}">CONTACTS</option>
-                    <option value="{%url 'coupon:home' %}">COUPONS</option>
-                    <option value="{%url 'about:home' %}">ABOUT</option>
-                </select>
-            </div>
+<div class="box-items-1">
+    <div class="whiteImage"></div>
+    <div class="blackYellowImage"></div>
+</div>
+<div class="wrapper">
+    <header class="menu">
+        <label class="logo" onclick="window.location.href='{%url 'main:home' %}';">HOTEL</label>
+        <div class="menu-items">
+            <label class="my-button" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">ROOMS</label>
+            <label class="my-button" onclick="window.location.href='{%url 'review:home' %}';">REVIEW</label>
+            <select class="my-button" onchange="window.location.href=this.value;">
+                <option value="" selected disabled>MENU</option>
+                <option value="{%url 'news:home' %}">NEWS</option>
+                <option value="{%url 'faq:home' %}">FAQ</option>
+                <option value="{%url 'employee:home' %}">CONTACTS</option>
+                <option value="{%url 'coupon:home' %}">COUPONS</option>
+                <option value="{%url 'about:home' %}">ABOUT</option>
+            </select>
 
             {% if user.is_authenticated %}
 
             <div>
-                <label class="text1">{{user.username}}</label>
-                <button class="button1" onclick="location.href='{%url 'auth_user:logout' %}'">Sign Out</button>
+                <label class="my-button">{{user.username}}</label>
+                <label class="my-button" onclick="location.href='{%url 'auth_user:logout' %}'">Sign Out</label>
             </div>
             {% else %}
             <div>
-                <button class="button1" onclick="location.href='{%url 'auth_user:register' %}'">Sigh Up</button>
-                <button class="button1" onclick="location.href='{%url 'auth_user:login' %}'">Sign In</button>
+                <label class="my-button" onclick="location.href='{%url 'auth_user:register' %}'">Up</label>
+                <label class="my-button" style="cursor: default">/</label>
+                <label class="my-button" onclick="location.href='{%url 'auth_user:login' %}'">In</label>
             </div>
             {% endif %}
         </div>
     </header>
 
-    <div style="padding: 10px;">
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
 
     <footer>
-        <div class="footer">
-            <a style="margin: 0px 10px 0px 0px" class="text3" href="/static/policy/policy.pdf"
-               download="Privacy_Policies.pdf">PRIVACY POLICIES</a>
-            <label class="text3" onclick="window.location.href='{%url 'vacancy:home' %}';">VACANCY</label>
-        </div>
+        <a class="my-button" href="/static/policy/policy.pdf" download="Privacy_Policies.pdf">PRIVACY POLICIES</a>
+        <label class="my-button" onclick="window.location.href='{%url 'vacancy:home' %}';">VACANCY</label>
     </footer>
-
-    <div class="box-items-2">
-        <div class="yellowImage"></div>
-        <div class="greenImage"></div>
-    </div>
-</main>
+</div>
+<div class="box-items-2">
+    <div class="yellowImage"></div>
+    <div class="greenImage"></div>
+</div>
 
 
 </body>
