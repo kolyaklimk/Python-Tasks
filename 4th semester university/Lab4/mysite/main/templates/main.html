@@ -3,27 +3,32 @@
 {% block head %}
 <meta name="description" content="Главная. Последняя статья и информация о компаниях-партнерах">
 <meta name="keywords" content="статья, последняя статья, компании-партнеры, партнерство">
+<link rel="stylesheet" href="/static/css/main.css">
 {% endblock %}
 
 {% block content %}
 
-<aside style="float: right;">
-    <a href="https://mak.by/ru/">
-        <img src="static/banner/mac.jpg" align="center" alt="Рекламный баннер" width="200">
-    </a>
-</aside>
 
-<section itemscope itemtype="http://schema.org/Article">
-    <h2 itemprop="name">Последняя статья:</h2>
-    <h3 itemprop="headline">{{ latest_article.title }}</h3>
-    <p itemprop="description">{{ latest_article.content|slice:"200" }}
-        {% if latest_article.content|length > 200 %}...{% endif %}</p>
-    <br/>
-</section>
+<div class="content">
+    <section class="text" itemscope itemtype="http://schema.org/Article">
+        <h2 itemprop="name">Последняя статья:</h2>
+        <h3 itemprop="headline">{{ latest_article.title }}</h3>
+        <hr color="(74, 71, 62)">
+        <p itemprop="description">{{ latest_article.content|slice:"200" }}
+            {% if latest_article.content|length > 200 %}...{% endif %}</p>
+        <br/>
+    </section>
+
+    <aside class="image">
+        <a href="https://mak.by/ru/">
+            <img src="static/banner/mac.jpg" alt="Рекламный баннер">
+        </a>
+    </aside>
+</div>
 
 <article itemscope itemtype="http://schema.org/Organization">
     <h2>Компании-партнеры:</h2>
-    <ul style="list-style: none; padding: 0; display: flex;">
+    <ul>
         <li itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
             <a href="https://alfabank.ru/">
                 <img src="static/partners/alpha.png" alt="Логотип 1" width="100">

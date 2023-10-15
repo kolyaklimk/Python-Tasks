@@ -8,6 +8,7 @@
     <link rel="icon" href="/static/logo/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/base.css">
     <link rel="stylesheet" href="/static/css/footer-header.css">
+    <link rel="stylesheet" href="/static/css/other.css">
     {% block head %} {% endblock %}
 </head>
 <body>
@@ -16,7 +17,18 @@
     window.addEventListener("load", function() {
         document.querySelector(".loader").classList.add("animating");
     });
+
+    window.addEventListener('scroll', function() {
+    var menu = document.querySelector('.menu');
+    if (window.pageYOffset > 30) {
+        menu.classList.add('fixed-menu');
+    } else {
+        menu.classList.remove('fixed-menu');
+    }
+});
+
 </script>
+
 
 <div class="box-items-1">
     <div class="whiteImage"></div>
@@ -28,7 +40,7 @@
         <div class="menu-items">
             <label class="my-button" onclick="window.location.href='{%url 'hotel:hotel_list' 0 %}';">ROOMS</label>
             <label class="my-button" onclick="window.location.href='{%url 'review:home' %}';">REVIEW</label>
-            <select class="my-button" onchange="window.location.href=this.value;">
+            <select class="select-1" onchange="window.location.href=this.value;">
                 <option value="" selected disabled>MENU</option>
                 <option value="{%url 'news:home' %}">NEWS</option>
                 <option value="{%url 'faq:home' %}">FAQ</option>

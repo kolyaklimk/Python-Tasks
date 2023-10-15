@@ -1,14 +1,5 @@
 {% extends 'hotel/base_hotel.html' %}
 
-{% block header %}
-.room-text {
-font-size: 28px;
-line-height: 1.2;
-margin-bottom: 5px;
-text-align: center
-}
-{% endblock %}
-
 {% block content %}
 {% if user.is_superuser %}
 <form method="POST" enctype="multipart/form-data">

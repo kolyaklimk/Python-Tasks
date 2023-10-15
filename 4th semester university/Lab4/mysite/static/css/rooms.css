@@ -1,0 +1,44 @@
+.all-item {
+	display: grid;
+	grid-template-rows: 5fr;
+	grid-gap: 10px;
+}
+.api {
+	grid-row: 0;
+}
+.but1 {
+	grid-row: 1;
+}
+.but2 {
+	grid-row: 2;
+}
+.but3 {
+	grid-row: 3;
+}
+.but5 {
+	grid-row: 5;
+}
+ul {
+	grid-row: 4;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-gap: 20px;
+	list-style: none;
+	padding: 30px;
+	margin: 30px;
+	align-items: center;
+	text-align: center;
+}
+
+	ul li {
+		background-color: rgb(250, 240, 202);
+		box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+		padding: 1.5rem;
+		border-radius: 24px;
+	}
+
+.name-room {
+	font-weight: 600;
+	margin-bottom: 1rem;
+	text-align: center;
+}

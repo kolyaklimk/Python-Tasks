@@ -5,6 +5,37 @@
     padding: 30px;
 }
 
+@media (min-width: 751px) {
+    .fixed-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 95%;
+        background: linear-gradient(to bottom, rgb(255, 248, 225) 70%, transparent);
+        z-index: 100;
+    }
+}
+
+@media (max-width: 750px) {
+    .fixed-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 95%;
+        background: linear-gradient(to bottom, yellow 70%, transparent);
+        z-index: 100;
+    }
+}
+
+
 .logo {
     width: max-content;
     display: flex;
@@ -33,6 +64,7 @@
     text-decoration: none;
     transition: color 0.3s;
 }
+
     .my-button::before {
         content: "";
         position: absolute;
@@ -45,11 +77,11 @@
     }
 
     .my-button:hover::before {
-        width: 100%; 
+        width: 100%;
     }
 
     .my-button:not(:hover)::before {
-        width: 0; 
+        width: 0;
     }
 
 footer {

@@ -1,29 +1,5 @@
 {% extends 'hotel/base_hotel.html' %}
 
-{% block header %}
-
-.room-text {
-font-size: 22px;
-line-height: 1.2;
-margin-bottom: 5px;
-}
-
-.room-list {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-grid-gap: 20px;
-margin-top: 20px;
-list-style-type: none;
-}
-
-.room-item {
-cursor: pointer;
-background-color: #f2f2f2;
-padding: 20px;
-text-align: center;
-}
-
-{% endblock %}
 
 {% block content %}
 <Label class="room-text">Total earnings: {{total_earnings}}</Label><br>
