@@ -2,8 +2,8 @@
 h1 {
     font-size: clamp(2.25rem, 4vw, 3rem);
     margin-bottom: 1rem;
+    text-align:center;
 }
-
 /* Контейнер для сотрудников */
 ul {
     list-style-type: none;
@@ -16,17 +16,18 @@ ul {
 
 /* Стилизация каждого сотрудника */
 li {
-    width: 100px;
-    margin: 10px;
-    padding: 15px;
-    border: 10px solid #ccc;
-    border-radius: 10%;
+    background-color: rgb(250, 240, 202);
+    box-shadow: rgba(191, 180, 140, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    width: 300px;
+    margin: 30px;
+    padding: 1.5rem;
+    border-radius: 24px;
 }
 
 /* Стилизация фотографии сотрудника */
 li img {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     object-fit: cover;
 }
