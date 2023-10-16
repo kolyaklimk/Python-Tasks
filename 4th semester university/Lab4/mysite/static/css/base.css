@@ -1,11 +1,43 @@
+@font-face {
+    font-family: 'PrimaryFont';
+    src: url('/static/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AlternativeFont';
+    src: url('/static/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'FontFamily';
+    src: url('/static/fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontFamily';
+    src: url('/static/fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontFamily';
+    src: url('/static/fonts/Roboto-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
 body {
-    font-family: TTCommonsProVar, sans-serif;
+    font-family: 'PrimaryFont', Arial, sans-serif;
     font-size: 1.25rem;
     background: rgb(255, 248, 225);
     line-height: 1.4;
     height: 100vh;
 }
 
+/* Добавьте другие начертания (например, курсив) при необходимости */
 .wrapper {
     min-height: 100vh;
     display: flex;

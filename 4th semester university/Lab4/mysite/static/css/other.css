@@ -78,7 +78,7 @@ p {
 
 /* Текст в капительных буквах */
 .capitalize {
-    text-transform: uppercase;
+    font-variant: small-caps;
 }
 
 /* Интервал между словами и символами */
@@ -94,7 +94,7 @@ p {
 
 /* Шрифты и выравнивание текста */
 p {
-    font-family: Arial, sans-serif; /* Укажите свой выбранный шрифт */
+    font-family: 'PrimaryFont', Arial, sans-serif;
     font-size: 16px; /* Размер шрифта */
     text-align: left; /* Выравнивание текста (center, left, right) */
 }
