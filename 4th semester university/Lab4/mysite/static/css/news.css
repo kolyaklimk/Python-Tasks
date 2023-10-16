@@ -76,3 +76,15 @@ ul {
                 background-color: white;
                 border-radius: 10px;
             }
+
+.myimg {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 90%;
+    transition: transform 0.3s;
+}
+
+    .myimg:hover {
+        transform: scale(1.1); /* Увеличиваем изображение на 10% */
+    }

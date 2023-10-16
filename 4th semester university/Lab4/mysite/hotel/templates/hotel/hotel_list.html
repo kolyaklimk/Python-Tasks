@@ -75,7 +75,7 @@
             {% if user.is_superuser%}
             <form method="POST">
                 {% csrf_token %}
-                <input type="hidden" name="room_id" value="{{ m.id }}">
+                <input class="input-1" type="hidden" name="room_id" value="{{ m.id }}">
                 <button name="button1" class="button-1">
                     Delete
                 </button>

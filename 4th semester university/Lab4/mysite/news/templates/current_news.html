@@ -1,9 +1,12 @@
 {% extends 'hotel/base_hotel.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/news.css">
+{% endblock %}
 
 {% block content %}
 
-<h1>{{ news.title }}</h1>
-<img src="{{ news.image.url }}" alt="{{ news.title }}" width="400">
+<h1 style="margin:40px;">{{ news.title }}</h1>
+<img class="myimg" src="{{ news.image.url }}" alt="{{ news.title }}" width="400">
 <p>{{ news.content }}</p>
 
 {% endblock %}

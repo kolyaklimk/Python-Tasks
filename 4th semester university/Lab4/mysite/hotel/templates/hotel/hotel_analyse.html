@@ -1,5 +1,7 @@
 {% extends 'hotel/base_hotel.html' %}
-
+{% block head %}
+<link rel="stylesheet" href="/static/css/coupon.css">
+{% endblock %}
 
 {% block content %}
 <Label class="room-text">Total earnings: {{total_earnings}}</Label><br>
@@ -27,7 +29,7 @@
     {% endfor %}
 </ul>
 
-<table border="2" style="width:100%;">
+<table border="2" >
     <tr>
         <th>Name</th>
         <th>Phone</th>
