@@ -3,8 +3,8 @@
 {% block head %}
 <meta name="description" content="Гостиничный комплекс РУП в Минске, старейшее предприятие гостиничного хозяйства">
 <meta name="keywords" content="гостиница, Минск, рестораны, бары, фитнес-центр, бизнес-центр, контакты">
+<link rel="stylesheet" href="/static/css/about.css">
 {% endblock %}
-
 
 {% block content %}
 
@@ -35,7 +35,8 @@
     </p>
 </article>
 <article>
-    <p>Основатель: <q cite="https://www.instagram.com/klimkovich_kolya/"><sup>Мы готовы</sup> предоставить вам высокий
+    <p>Основатель: <q lang="en" cite="https://www.instagram.com/klimkovich_kolya/"><sup>Мы готовы</sup> предоставить вам
+        высокий
         уровень обслуживания.</q>
         <time datetime="1990-08-6" itemprop="foundingDate">August 6th</time>
     </p>
@@ -92,9 +93,9 @@
 <article>
     <h2 itemprop="event">История нашей компании</h2>
     <ul>
-        <li><strong>Основание:</strong> Гостиница была основана в 1990 году в Минске.</li>
-        <li><strong>Строительство:</strong> Строительство гостиницы началось в 1985 году и завершилось в 1990 году.</li>
-        <li><strong>Открытие:</strong> Гостиница была открыта в 1990 году.</li>
+        <li><strong class="blue">Основание:</strong> Гостиница была основана в 1990 году в Минске.</li>
+        <li><strong class="yellow">Строительство:</strong> Строительство гостиницы началось в 1985 году и завершилось в 1990 году.</li>
+        <li><strong class="blue yellow">Открытие:</strong> Гостиница была открыта в 1990 году.</li>
         <li><strong>Первые постояльцы:</strong> Первыми постояльцами гостиницы были иностранные туристы.</li>
         <li><strong>Первые события:</strong> В первый год работы гостиницы в ней прошли несколько международных
             конференций.
@@ -114,11 +115,13 @@
     </ul>
 </article>
 
-<article>
+<article class="parent">
     <h2 itemprop="contact">Контактная информация</h2>
     <p itemprop="address">Адрес: г. Минск</p>
-    <p itemprop="telephone"> Телефон: +375 (29) 123-45-67</p>
-    <p itemprop="email">Email: hotel@gmail.com</p>
+    <div>
+        <p itemprop="telephone"> Телефон: +375 (29) 123-45-67</p>
+        <p itemprop="email">Email: hotel@gmail.com</p>
+    </div>
 </article>
 
 <h2 id="n1" itemprop="certificate">Сертификат</h2>

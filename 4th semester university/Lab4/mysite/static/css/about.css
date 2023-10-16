@@ -1,0 +1,104 @@
+/* Стили для элементов списка и таблицы */
+ul li:first-child,
+ol li:first-child,
+tr:first-child {
+    font-weight: bold;
+}
+
+
+/* начинается */
+em[itemprop^="numberOf"] {
+    font-weight: bold;
+}
+
+/* заканчивается */
+img[src$=".png"] {
+    border: 1px solid #ccc;
+}
+/*определённое*/
+h2[itemprop="event"] {
+    font-style: italic;
+}
+
+ul li:last-child,
+ol li:last-child,
+tr:last-child {
+    font-style: italic;
+}
+
+ul li:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Стили для элементов формы */
+input:enabled {
+    border: 2px solid green;
+}
+
+input:disabled {
+    background-color: lightgray;
+}
+
+input:required {
+    font-weight: bold;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background-color: yellow;
+}
+
+/* Стили для разных языков цитат */
+q[lang="en"]::before {
+    content: "'";
+}
+
+q[lang="en"]::after {
+    content: "'";
+}
+
+/* Псевдоэлементы */
+
+/* Выделение первой буквы текста абзаца */
+p::first-letter {
+    font-size: 2rem;
+    color: blue;
+}
+
+/* Добавление контекста в начале и конце фрагмента текста */
+p::before {
+    content: "S: ";
+    font-weight: bold;
+}
+
+p::after {
+    content: " E.";
+}
+
+ul {
+    list-style-type: none;
+}
+/* Оформление маркеров - символами юникода для списка */
+li::before {
+    content: "\2023"; /* Устанавливаем маркер в виде точки */
+    margin-right: 20px;
+}
+
+/* Изменение стиля при выделении текста */
+::selection {
+    background-color: yellow;
+    color: blue;
+}
+
+.parent > p {
+    color: blue;
+}
+
+.blue.yellow {
+    background-color: yellow;
+    color: blue;
+}

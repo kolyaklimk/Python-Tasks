@@ -29,7 +29,6 @@ tr:nth-child(even) {
 }
 tr:nth-child(2n+1) {
     background-color: rgb(249,230,149);
-
 }
 
 /* Горизонтальное и вертикальное выравнивание в ячейках */

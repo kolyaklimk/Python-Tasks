@@ -100,3 +100,20 @@
     top: 10px; /* Перемещение блока вверх на 10px (можете изменить) */
     left: 20px; /* Перемещение блока влево на 20px (можете изменить) */
 }
+
+input[type="checkbox"]:checked, input[type="radio"]:checked {
+    width:100px;
+    height:100px;
+}
+input[type="number"]:out-of-range {
+    background-color: green;
+}
+input:disabled {
+    opacity: 0.5;
+}
+input[required] {
+    background-color: lightpink;
+}
+input:enabled {
+    border: 2px solid green;
+}

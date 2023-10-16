@@ -49,15 +49,30 @@ ul {
             display: block;
             margin: 0 auto;
             color: rgb(74, 71, 62);
-            border-radius: 40px;
             width: 200px;
             padding: 5px 10px;
-            background-color: rgb(193, 176, 99);
             text-decoration: none;
             transition: background-color 0.5s, border-radius 0.5s;
         }
+            /* Новые ссылки */
+            ul li a:link {
+                background-color: rgb(193, 176, 99);
+                border-radius: 40px;
+            }
 
+            /* Посещенные ссылки */
+            ul li a:visited {
+                background-color: rgb(188, 222, 191);
+                border-radius: 10px;
+            }
+
+            /* При наведении подчеркиваем */
             ul li a:hover {
                 background-color: rgb(188, 222, 191);
+                border-radius: 10px;
+            }
+            /* При активации */
+            ul li a:active {
+                background-color: white;
                 border-radius: 10px;
             }
