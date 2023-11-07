@@ -1,10 +1,45 @@
+#top{
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#top::before{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 200px;
+    width: 100%;
+    background:linear-gradient(to top, rgb(255, 248, 225),transparent);
+    z-index: 1000;
+}
+.my-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    }
+
+#text{
+    position: relative;
+    font-size: 10rem;
+}
+
+
 .content {
     display: flex;
 }
 
 .text {
-    flex: 1; /* Занимает доступное пространство слева */
-    padding: 10px; /* Добавляем отступы по желанию */
+    flex: 1;
+    padding: 10px;
     position: static;
     width: 60vw;
     background-color: rgb(250, 240, 202);

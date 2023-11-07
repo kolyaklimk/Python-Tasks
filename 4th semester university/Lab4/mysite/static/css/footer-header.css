@@ -14,7 +14,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 95%;
+        width: 96%;
         background: linear-gradient(to bottom, rgb(255, 248, 225) 70%, transparent);
         z-index: 100;
     }
@@ -29,7 +29,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 95%;
+        width: 96%;
         background: linear-gradient(to bottom, yellow 70%, transparent);
         z-index: 100;
     }

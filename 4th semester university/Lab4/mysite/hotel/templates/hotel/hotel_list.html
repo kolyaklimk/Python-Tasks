@@ -66,21 +66,24 @@
     {%endif%}
     <ul>
         {% for m in rooms %}
-        <li onclick="window.location.href='{% url 'hotel:room_id' m.id %}'">
+        <li class="card-wrapper" onclick="window.location.href='{% url 'hotel:room_id' m.id %}'">
             {% load static %}
-            <img src="/{{ m.photo }}" alt="image">
-            <div class="name-room">{{ m }}</div>
-            <div>Capacity: {{ m.capacity }}</div>
-            <div>Price: {{ m.price }}</div>
-            {% if user.is_superuser%}
-            <form method="POST">
-                {% csrf_token %}
-                <input class="input-1" type="hidden" name="room_id" value="{{ m.id }}">
-                <button name="button1" class="button-1">
-                    Delete
-                </button>
-            </form>
-            {%endif%}
+            <div class="card">
+                <div style="height:250px;"></div>
+                <div class="name-room">{{ m }}</div>
+                <div>Capacity: {{ m.capacity }}</div>
+                <div>Price: {{ m.price }}</div>
+                {% if user.is_superuser%}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input class="input-1" type="hidden" name="room_id" value="{{ m.id }}">
+                    <button id="delete" name="button1" class="button-1 button-card">
+                        Delete
+                    </button>
+                </form>
+                {%endif%}
+            </div>
+            <img class="image-card" src="/{{ m.photo }}" alt="image">
         </li>
         {% empty %}
         <li>No rooms</li>
@@ -95,4 +98,5 @@
         </div>
     </header>
 </div>
+<script src="/static/js/rooms.js"></script>
 {% endblock %}
