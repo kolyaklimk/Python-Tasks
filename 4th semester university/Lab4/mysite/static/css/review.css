@@ -1,3 +1,30 @@
+.date{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+     opacity: 1;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    transition: opacity 1s;
+}
+
+.loader2 {
+    background-color: rgb(255, 248, 225);
+    width: 100vw;
+    height: 100vh;
+     opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1999;
+    transition: opacity 1s;
+}
+
+    .animating {
+        opacity: 0;
+        pointer-events: none;
+    }
+
 /* Стилизация заголовка "Отзывы" */
 h1 {
 	font-size: clamp(2.25rem, 4vw, 3rem);

@@ -8,6 +8,15 @@
 
 {% block content %}
 
+
+<div class="loader2"></div>
+<div class="date">
+    <label for="birthdate" id="text">Введите вашу дату рождения:</label>
+    <input class="input-1 " type="date" id="birthdate">
+    <button class="button-1 " id="calculateAge">Check</button>
+</div>
+<script src="/static/js/check_date.js"></script>
+
 <h1>Отзывы</h1>
 
 {% if user.is_authenticated %}

@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from .models import Room, Category, Booking
+from coupon.models import Coupon
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.utils import timezone
@@ -99,6 +100,8 @@ def room_detail(request, room_id):
 
     form = get_object_or_404(Room, id=room_id)
     categories = Category.objects.all()
+    coupon = ''
+    count = ''
 
     if request.method == 'POST' and 'book_room' in request.POST:
         check_in_date = datetime.strptime(request.POST['check_in_date'], '%Y-%m-%d').date()
@@ -149,7 +152,18 @@ def room_detail(request, room_id):
         form.save()
         form = get_object_or_404(Room, id=room_id)
 
-    return render(request, 'hotel/room_detail.html', {'form': form, 'categories': categories})
+    if request.method == 'POST' and 'coupon' in request.POST:
+        text = request.POST['text']
+        coupons = Coupon.objects.filter(code=text, is_active=True)
+        if coupons.exists():
+            coupon = coupons.first()
+            try:
+                count = "{:.2f}".format(float(coupon.description[:-1]) / 100)
+            except:
+                coupon = ''
+
+    return render(request, 'hotel/room_detail.html',
+                  {'form': form, 'categories': categories, 'coupon': coupon, 'count': count})
 
 
 def create_room(request):

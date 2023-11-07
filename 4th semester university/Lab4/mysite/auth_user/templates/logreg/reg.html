@@ -13,11 +13,10 @@ display: table;
 <form method="post" class="horizontal-center">
     {% csrf_token %}
     {% for f in form %}
-    <p><label  for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+    <p><label for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
 
-    <button class="button-1">Sign Up</button>
+    <button class="button-1" id="button">Sign Up</button>
 </form>
-
 {% endblock %}
