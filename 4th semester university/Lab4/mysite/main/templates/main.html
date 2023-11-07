@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div hidden id="rotationInterval"> {{ miliseconds }}</div>
 <section id="top">
     <h2 id="text">HOTEL</h2>
     <img class="my-img" src='/static/items/redItem.png' id="item_left"/>
@@ -27,11 +27,29 @@
     </section>
 
     <aside class="image">
-        <a href="https://mak.by/ru/">
-            <img src="static/banner/mac.jpg" alt="Рекламный баннер">
-        </a>
+        <div class="banner">
+            <a href="https://mak.by/ru/">
+                <img src="static/banner/mac.jpg" alt="Рекламный баннер mac">
+            </a>
+        </div>
+        <div class="banner" style="display: none;">
+            <a href="https://burger-king.by/">
+                <img src="static/banner/burger-king.jpg" alt="Рекламный баннер burger-king">
+            </a>
+        </div>
     </aside>
+    <script src="/static/js/banner.js"></script>
 </div>
+
+{% if user.is_superuser%}
+<form method="POST" style="margin: 20px; display: flex; flex-direction: column; align-items: center;">
+    {% csrf_token %}
+    <label for="number">Промежуток времени</label>
+    <label for="number">Введите число от 1 до 99999</label>
+    <input class="input-1" type="number" id="number" name="number" min="1" max="99999" required>
+    <button class="button-1" name="new_number">Отправить</button>
+</form>
+{%endif%}
 
 <article itemscope itemtype="http://schema.org/Organization">
     <h2>Компании-партнеры:</h2>

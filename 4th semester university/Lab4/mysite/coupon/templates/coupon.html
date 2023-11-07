@@ -8,8 +8,17 @@
 
 {% block content %}
 
-<h1>Промокоды и купоны</h1>
+<h1 id="h1">Промокоды и купоны</h1>
+<form id="settingsForm">
+    <label for="fontSize">Размер шрифта:</label>
+    <input type="range" id="fontSize" min="1" max="100">
 
+    <label for="textColor">Цвет текста:</label>
+    <input type="color" id="textColor">
+
+    <label for="bgColor">Цвет фона:</label>
+    <input type="color" id="bgColor">
+</form>
 <table border="10px">
     <tr>
         <th>Код</th>
@@ -33,4 +42,5 @@
     {% endfor %}
 </table>
 
+<script src="/static/js/coupon.js"></script>
 {% endblock %}
