@@ -6,13 +6,16 @@ const addColumnButton = document.getElementById("addColumn");
 const deleteRowButton = document.getElementById("deleteRow");
 const deleteColumnButton = document.getElementById("deleteColumn");
 
-let numRows = 3;
-let numCols = 3;
-let limit = 1;
+let numRows = 0;
+let numCols = 0;
+let limit = 0;
 let selectedInColumnCount = {};
 
 function generateTable() {
-selectedInColumnCount = {};
+for(key in selectedInColumnCount) {
+    delete selectedInColumnCount[key];
+}
+    selectedInColumnCount = {};
     table.innerHTML = "";
 
     for (let i = 0; i < numRows; i++) {
@@ -49,7 +52,7 @@ function transposeTable() {
 
 function toggleCellSelection(event) {
     const cell = event.target;
-console.log(selectedInColumnCount[cell.cellIndex])
+    console.log(selectedInColumnCount[cell.cellIndex])
     if (cell.classList.contains("selected")) {
         cell.classList.remove("selected");
         cell.style.backgroundColor = "transparent";

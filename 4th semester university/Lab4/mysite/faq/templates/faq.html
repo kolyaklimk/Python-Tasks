@@ -13,7 +13,8 @@
     {% for faq_item in faq_items %}
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question">
         <details>
-            <summary itemprop="name"><span class=".question">{{ faq_item.question }}</span> - <span class="date">{{ faq_item.date_added }}</span></summary>
+            <summary itemprop="name"><span class=".question">{{ faq_item.question }}</span> - <span class="date">{{ faq_item.date_added }}</span>
+            </summary>
             <div itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer">
                 <p itemprop="text">{{ faq_item.answer }}</p>
             </div>
@@ -21,5 +22,28 @@
     </li>
     {% endfor %}
 </ul>
+
+<br><br>
+<div>
+  <label for="question">Вопрос:</label>
+  <input class="input-1" type="text" id="question">
+  <label for="answer">Ответ:</label>
+  <input class="input-1" type="text" id="answer">
+  <button class="button-1" id="addFAQItem">Add class FAQ</button>
+  <button class="button-1" id="addFAQItem2">Add function FAQ</button>
+</div>
+
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <ul id="ul1">
+        </ul>
+    </div>
+    <div style="flex: 1;">
+        <ul id="ul2">
+        </ul>
+    </div>
+</div>
+<script src="/static/js/faq_class.js"></script>
+<script src="/static/js/faq_function.js"></script>
 
 {% endblock %}

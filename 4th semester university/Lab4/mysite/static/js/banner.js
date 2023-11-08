@@ -10,6 +10,8 @@ function rotateBanners() {
 const rotationIntervalElement = document.getElementById("rotationInterval");
 const rotationIntervalValue = rotationIntervalElement.textContent;
 
+rotationInterval = setInterval(rotateBanners, rotationIntervalValue);
+
 //document.addEventListener("visibilitychange", () => {
 ////console.log(document.visibilityState);
 //  if (document.visibilityState === "visible") {
