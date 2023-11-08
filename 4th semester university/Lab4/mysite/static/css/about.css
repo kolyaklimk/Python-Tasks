@@ -132,3 +132,17 @@ li::before {
     font-size: 24px;
     z-index: 1; /* z-index для слоя */
 }
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
